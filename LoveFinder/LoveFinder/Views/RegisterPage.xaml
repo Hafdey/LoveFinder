@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoveFinder.Views.RegisterPage"
+             NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Background="#1b1b1b">
+            <Image Source="logo.png" Margin="50,0,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="Firstname" Placeholder="Voornaam:" Margin="50,10,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="Lastname" Placeholder="Achternaam:" Margin="50,5,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="Birthday" Placeholder="Leeftijd:" Margin="50,5,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="Gender" Placeholder="Geslacht:" Margin="50,5,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="SexualOrientation" Placeholder="Seksuele voorkeur:" Margin="50,5,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="Mail" Placeholder="E-Mail:" Margin="50,5,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="Password1" Placeholder="Wachtwoord:" IsPassword="True" Margin="50,5,50,0"/>
+            <Entry Style="{StaticResource Inputfield}" x:Name="Password2" Placeholder="Valideer wachtwoord" IsPassword="True" Margin="50,5,50,0"/>
+            <Button Style="{StaticResource Orangebtn}" x:Name="Savebtn" Text="Maak account" Clicked="Savebtn_Clicked" Margin="50,10,50,0"/>
+                <Label BackgroundColor="#1b1b1b"></Label>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

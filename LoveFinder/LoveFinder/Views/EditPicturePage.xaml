@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoveFinder.Views.EditPicturePage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout BackgroundColor="#1b1b1b">
+            <Frame CornerRadius="20" Padding="0" Margin="70,5,70,10">
+                <Image Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+            <Frame CornerRadius="20" Padding="0" Margin="35,0,200,0">
+                <Image Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+            <Frame CornerRadius="20" Padding="0" Margin="200,-131,35,0">
+                <Image Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+            <Frame CornerRadius="20" Padding="0" Margin="35,30,200,0">
+                <Image Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+            <Frame CornerRadius="20" Padding="0" Margin="200,-131,35,30">
+                <Image Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+                <Button Style="{StaticResource Orangebtn}" x:Name="Save" Text="Opslaan" Clicked="Save_Clicked"/>
+                <Button Style="{StaticResource Orangebtn}" x:Name="Back" Text="Terug" Clicked="Back_Clicked" Margin="0,0,0,10"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

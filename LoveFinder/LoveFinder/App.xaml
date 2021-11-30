@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoveFinder.App">
+    <Application.Resources>
+        <Style x:Key="Orangebtn" TargetType="Button">
+            <Setter Property="TextColor" Value="#1b1b1b"/>
+            <Setter Property="BackgroundColor" Value="#ffa31a"/>
+            <Setter Property="CornerRadius" Value="50"/>
+        </Style>
+        <Style x:Key="Redbtn" TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="Red"/>
+            <Setter Property="CornerRadius" Value="50"/>
+        </Style>
+        <Style x:Key="Inputfield" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="#292929"/>
+            <Setter Property="TextColor" Value="#dedede"/>
+            <Setter Property="PlaceholderColor" Value="#dedede"/>
+        </Style>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="#1b1b1b"/>
+            <Setter Property="BarTextColor" Value="#ffa31a"/>
+        </Style>
+
+    </Application.Resources>
+</Application>
