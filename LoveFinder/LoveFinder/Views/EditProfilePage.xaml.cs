@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoveFinder.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace LoveFinder.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProfilePage : ContentPage
     {
+        public UserController user { get; set; }
         public EditProfilePage()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace LoveFinder.Views
         private void Signout_Clicked(object sender, EventArgs e)
         {
             MainPage mainPage = new MainPage();
+            mainPage.user = user;
             Navigation.PushAsync(mainPage);
         }
 

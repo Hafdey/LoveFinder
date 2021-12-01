@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LoveFinder.Controllers
 {
-    class UserController
+   public class UserController
     {
         public User user = new User("","","","",0,"","");
         public void CreateAccount(User newuser)

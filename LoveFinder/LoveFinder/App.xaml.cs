@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LoveFinder.Controllers;
+using LoveFinder.Models;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,8 +10,13 @@ namespace LoveFinder
     {
         public App()
         {
+            UserController user = new UserController();
+            User testuser = new User("test", "test", "Jan", "Wimpel", 20, "Male", "Hetero");
+            user.CreateAccount(testuser);
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage page = new MainPage();
+            page.user = user;
+            MainPage = new NavigationPage(page);
         }
 
         protected override void OnStart()

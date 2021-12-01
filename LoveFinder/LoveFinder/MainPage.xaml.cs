@@ -13,11 +13,9 @@ namespace LoveFinder
 {
     public partial class MainPage : ContentPage
     {
-        UserController user = new UserController();
+        public UserController user { get; set; }
         public MainPage()
         {
-            User testuser = new User("test","test","Jan","Wimpel",20,"Male","Hetero");
-            user.CreateAccount(testuser);
             InitializeComponent();
         }
 
@@ -47,6 +45,7 @@ namespace LoveFinder
         private void Registerbtn_Clicked(object sender, EventArgs e)
         {
             RegisterPage registerPage = new RegisterPage();
+            registerPage.user = user;
             Navigation.PushAsync(registerPage);
         }
     }
