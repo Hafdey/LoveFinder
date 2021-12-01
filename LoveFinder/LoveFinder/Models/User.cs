@@ -37,7 +37,8 @@ namespace LoveFinder.Models
         }
         public bool Login(string inputMail, string inputPassword)
         {
-            if(inputMail == mail && inputPassword == password)
+            var user = users.Find(x => x.mail == inputMail);
+            if(inputMail == user.mail && inputPassword == user.password)
             {
                 return true;
             }
