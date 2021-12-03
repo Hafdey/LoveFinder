@@ -22,6 +22,7 @@ namespace LoveFinder.Views
         private void Message_Clicked(object sender, EventArgs e)
         {
             MessagesPage messagesPage = new MessagesPage();
+            messagesPage.user = user;
             Navigation.PushAsync(messagesPage);
         }
 

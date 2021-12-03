@@ -22,6 +22,11 @@
             <Setter Property="BarBackgroundColor" Value="#1b1b1b"/>
             <Setter Property="BarTextColor" Value="#ffa31a"/>
         </Style>
+        <Style x:Key="Pickerstyle" TargetType="Picker">
+            <Setter Property="BackgroundColor" Value="#292929"/>
+            <Setter Property="TextColor" Value="#dedede"/>
+            <Setter Property="TitleColor" Value="#dedede"/>
+        </Style>
 
     </Application.Resources>
 </Application>

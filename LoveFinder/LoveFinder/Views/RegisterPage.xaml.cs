@@ -22,11 +22,11 @@ namespace LoveFinder.Views
 
         private void Savebtn_Clicked(object sender, EventArgs e)
         {
-            if (Firstname.Text != null && Lastname.Text != null && Birthday.Text != null && Gender.Text != null && SexualOrientation.Text != null && Mail.Text != null && Password1.Text != null && Password2.Text != null)
+            if (Firstname.Text != null && Lastname.Text != null && Birthday.Text != null && Gender.SelectedItem.ToString() != null && SexualOrientation.SelectedItem.ToString() != null && Mail.Text != null && Password1.Text != null && Password2.Text != null)
             {
                 if(Password1.Text == Password2.Text)
                 {
-                    User newuser = new User(Mail.Text,Password1.Text,Firstname.Text,Lastname.Text,Int32.Parse(Birthday.Text),Gender.Text,SexualOrientation.Text);
+                    User newuser = new User(Mail.Text,Password1.Text,Firstname.Text,Lastname.Text,Int32.Parse(Birthday.Text),Gender.SelectedItem.ToString(),SexualOrientation.SelectedItem.ToString());
                     user.CreateAccount(newuser);
                 }
                 else

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoveFinder.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace LoveFinder.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChangePicturePage : ContentPage
     {
+        public UserController user { get; set; }
         public ChangePicturePage()
         {
             InitializeComponent();
@@ -20,24 +22,28 @@ namespace LoveFinder.Views
         private void SetAsProfilePic_Clicked(object sender, EventArgs e)
         {
             EditPicturePage editPicturePage = new EditPicturePage();
+            editPicturePage.user = user;
             Navigation.PushAsync(editPicturePage);
         }
 
         private void DeletePic_Clicked(object sender, EventArgs e)
         {
             EditPicturePage editPicturePage = new EditPicturePage();
+            editPicturePage.user = user;
             Navigation.PushAsync(editPicturePage);
         }
 
         private void ReplacePic_Clicked(object sender, EventArgs e)
         {
             UploadPicturePage uploadPicturePage = new UploadPicturePage();
+            uploadPicturePage.user = user;
             Navigation.PushAsync(uploadPicturePage);
         }
 
         private void Back_Clicked(object sender, EventArgs e)
         {
             EditPicturePage editPicturePage = new EditPicturePage();
+            editPicturePage.user = user;
             Navigation.PushAsync(editPicturePage);
         }
     }
