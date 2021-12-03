@@ -47,5 +47,26 @@ namespace LoveFinder.Models
                 return false;
             }
         }
+        public bool FindUser(string mail)
+        {
+            User user = null;
+            bool good = false;
+            try
+            {
+                user = users.Find(x => x.mail == mail);
+            }
+            finally
+            {
+                if(user == null)
+                {
+                    good = false;
+                }
+                else
+                {
+                    good = true;
+                }
+            }
+            return good;
+        }
     }
 }

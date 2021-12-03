@@ -26,8 +26,19 @@ namespace LoveFinder.Views
             {
                 if(Password1.Text == Password2.Text)
                 {
-                    User newuser = new User(Mail.Text,Password1.Text,Firstname.Text,Lastname.Text,Int32.Parse(Birthday.Text),Gender.SelectedItem.ToString(),SexualOrientation.SelectedItem.ToString());
-                    user.CreateAccount(newuser);
+                    bool next = user.FindUser(Mail.Text);
+                    if (!next)
+                    {
+                        User newuser = new User(Mail.Text, Password1.Text, Firstname.Text, Lastname.Text, Int32.Parse(Birthday.Text), Gender.SelectedItem.ToString(), SexualOrientation.SelectedItem.ToString());
+                        user.CreateAccount(newuser);
+                        EditProfilePage editProfilePage = new EditProfilePage();
+                        editProfilePage.user = user;
+                        Navigation.PushAsync(editProfilePage);
+                    }
+                    else
+                    {
+                        DisplayAlert("Bestaand account", "Dit account bestaat al", "Oke");
+                    }
                 }
                 else
                 {
@@ -40,9 +51,6 @@ namespace LoveFinder.Views
             {
                 DisplayAlert("Fout vulden", "Niet alle velden zijn ingevuld", "Oke");
             }
-            EditProfilePage editProfilePage = new EditProfilePage();
-            editProfilePage.user = user;
-            Navigation.PushAsync(editProfilePage);
         }
 
         private void Backbtn_Clicked(object sender, EventArgs e)

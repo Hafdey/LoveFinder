@@ -20,5 +20,9 @@ namespace LoveFinder.Controllers
         {
             return user.Login(mail, password);
         }
+        public bool FindUser(string mail)
+        {
+            return user.FindUser(mail);
+        }
     }
 }
