@@ -35,6 +35,7 @@ namespace LoveFinder.Views
         private void Remove_Clicked(object sender, EventArgs e)
         {
             MainPage mainPage = new MainPage();
+            mainPage.user = user;
             Navigation.PushAsync(mainPage);
         }
 
