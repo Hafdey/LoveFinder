@@ -27,6 +27,7 @@ namespace LoveFinder
                 if (next)
                 {
                     LikePage likePage = new LikePage();
+                    likePage.user = user;
                     Navigation.PushAsync(likePage);
                 }
                 else
