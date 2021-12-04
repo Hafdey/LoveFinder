@@ -26,18 +26,17 @@ namespace LoveFinder.Views
             {
                 if(Password1.Text == Password2.Text)
                 {
-                    bool next = user.FindUser(Mail.Text);
-                    if (!next)
+                    var next = user.FindUser(Mail.Text);
+                    if (next != null)
                     {
-                        User newuser = new User(Mail.Text, Password1.Text, Firstname.Text, Lastname.Text, Int32.Parse(Birthday.Text), Gender.SelectedItem.ToString(), SexualOrientation.SelectedItem.ToString());
-                        user.CreateAccount(newuser);
-                        EditProfilePage editProfilePage = new EditProfilePage();
-                        editProfilePage.user = user;
-                        Navigation.PushAsync(editProfilePage);
+                        DisplayAlert("Bestaand account", "Dit account bestaat al", "Oke");
                     }
                     else
                     {
-                        DisplayAlert("Bestaand account", "Dit account bestaat al", "Oke");
+                        user.CreateAccount(next);
+                        EditProfilePage editProfilePage = new EditProfilePage();
+                        editProfilePage.user = user;
+                        Navigation.PushAsync(editProfilePage);
                     }
                 }
                 else
