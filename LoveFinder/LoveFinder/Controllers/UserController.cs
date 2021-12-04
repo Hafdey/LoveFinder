@@ -24,5 +24,9 @@ namespace LoveFinder.Controllers
         {
             return user.FindUser(mail);
         }
+        public void EditUser(User edituser ,string bio, string age)
+        {
+            user.EditUser(edituser, bio, age);
+        }
     }
 }

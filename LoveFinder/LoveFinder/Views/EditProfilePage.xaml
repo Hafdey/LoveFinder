@@ -13,7 +13,8 @@
                 </Frame>
                 <Label x:Name="Firstname" Text="Hier komt de voornaam" TextColor="#ffff" Margin="140,-170,0,0" FontSize="Medium"/>
             <Label x:Name="Lastname" Text="Hier komt de achternaam" TextColor="#ffff" Margin="140,10,0,0" FontSize="Medium"/>
-            <Entry Style="{StaticResource Inputfield}" BackgroundColor="#1b1b1b" x:Name="Bio" Placeholder="Bio:" Margin="30,50,30,130"/>
+            <Entry Style="{StaticResource Inputfield}" BackgroundColor="#1b1b1b" x:Name="Bio" Placeholder="Bio:" Margin="30,50,30,10"/>
+            <Entry Style="{StaticResource Inputfield}" BackgroundColor="#1b1b1b" x:Name="Age" Placeholder="Leeftijd" Margin="30,10,30,50"/>
             <Button Style="{StaticResource Orangebtn}" x:Name="Save" Text="Opslaan" Clicked="Save_Clicked"/>
             <Button Style="{StaticResource Orangebtn}" x:Name="Signout" Text="Uitloggen" Clicked="Signout_Clicked" Margin="60,89,60,1"/>
             <Button Style="{StaticResource Redbtn}" x:Name="Remove" Text="Account verwijderen" Clicked="Remove_Clicked" Margin="60,0,60,0"/>

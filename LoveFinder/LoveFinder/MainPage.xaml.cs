@@ -26,7 +26,16 @@ namespace LoveFinder
                 bool next = user.Login(Mail.Text, Password.Text);
                 if (next)
                 {
-                    user.user = user.FindUser(Mail.Text);
+                    var tmp = user.FindUser(Mail.Text);
+                    user.user.firstname = tmp.firstname;
+                    user.user.lastname = tmp.lastname;
+                    user.user.age = tmp.age;
+                    user.user.bio = tmp.bio;
+                    user.user.gender = tmp.gender;
+                    user.user.sexualOrientation = tmp.sexualOrientation;
+                    user.user.location = tmp.location;
+                    user.user.password = tmp.password;
+                    user.user.mail = tmp.mail;
                     LikePage likePage = new LikePage();
                     likePage.user = user;
                     Navigation.PushAsync(likePage);

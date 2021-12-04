@@ -61,5 +61,26 @@ namespace LoveFinder.Models
             }
             return user;
         }
+        public void EditUser(User currentuser, string bio, string age)
+        {
+            int ctr = -1;
+            foreach(User user in users)
+            {
+                ctr++;
+                if(user.mail == currentuser.mail)
+                {
+                    break;
+                }
+            }
+            users[ctr].bio = bio;
+            try
+            {
+                users[ctr].age = Int32.Parse(age);
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

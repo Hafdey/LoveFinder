@@ -21,6 +21,7 @@ namespace LoveFinder.Views
 
         private void Save_Clicked(object sender, EventArgs e)
         {
+            user.EditUser(user.user, Bio.Text, Age.Text);
             LikePage likePage = new LikePage();
             likePage.user = user;
             Navigation.PushAsync(likePage);
