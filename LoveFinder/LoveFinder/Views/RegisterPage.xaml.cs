@@ -35,7 +35,7 @@ namespace LoveFinder.Views
                     {
                         user.user.firstname = Firstname.Text;
                         user.user.lastname = Lastname.Text;
-                        user.user.age = 0;
+                        user.user.age = Int32.Parse(Birthday.Text);
                         user.user.bio = "";
                         user.user.gender = Gender.SelectedItem.ToString();
                         user.user.sexualOrientation = SexualOrientation.SelectedItem.ToString();
@@ -43,8 +43,7 @@ namespace LoveFinder.Views
                         user.user.password = Password1.Text;
                         user.user.mail = Mail.Text;
                         user.CreateAccount(user.user);
-                        EditProfilePage editProfilePage = new EditProfilePage();
-                        editProfilePage.user = user;
+                        EditProfilePage editProfilePage = new EditProfilePage(user);
                         Navigation.PushAsync(editProfilePage);
                     }
                 }

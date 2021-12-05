@@ -18,7 +18,10 @@ namespace LoveFinder
         {
             InitializeComponent();
         }
-
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
         private void Loginbtn_Clicked(object sender, EventArgs e)
         {
             if(Mail.Text != null && Password.Text != null)

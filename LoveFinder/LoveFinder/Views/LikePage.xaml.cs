@@ -28,8 +28,7 @@ namespace LoveFinder.Views
 
         private void Profile_Clicked(object sender, EventArgs e)
         {
-            EditProfilePage editProfilePage = new EditProfilePage();
-            editProfilePage.user = user;
+            EditProfilePage editProfilePage = new EditProfilePage(user);
             Navigation.PushAsync(editProfilePage);
         }
 

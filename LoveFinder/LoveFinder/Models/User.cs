@@ -34,19 +34,32 @@ namespace LoveFinder.Models
         }
         public void DeleteAccount(User deluser)
         {
-            users.Remove(deluser);
+            int ctr = -1;
+            foreach(User user in users)
+            {
+                ctr++;
+                if(users[ctr].mail == deluser.mail)
+                {
+                    users.RemoveAt(ctr);
+                    break;
+                }
+            }
         }
         public bool Login(string inputMail, string inputPassword)
         {
             var user = users.Find(x => x.mail == inputMail);
-            if(inputMail == user.mail && inputPassword == user.password)
+            try
             {
-                return true;
+                if (inputMail == user.mail && inputPassword == user.password)
+                {
+                    return true;
+                }
             }
-            else
+            catch (System.NullReferenceException)
             {
                 return false;
             }
+            return false;
         }
         public User FindUser(string mail)
         {

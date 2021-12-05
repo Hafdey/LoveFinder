@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LoveFinder.Views.EditProfilePage">
+             x:Class="LoveFinder.Views.EditProfilePage"
+             NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#1b1b1b">
             <Frame CornerRadius="20" Padding="0" Margin="5,5,240,50">

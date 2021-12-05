@@ -14,9 +14,14 @@ namespace LoveFinder.Views
     public partial class EditProfilePage : ContentPage
     {
         public UserController user { get; set; }
-        public EditProfilePage()
+        public EditProfilePage(UserController usercontroller)
         {
             InitializeComponent();
+            user = usercontroller;
+            Firstname.Text = user.user.firstname;
+            Lastname.Text = user.user.lastname;
+            Bio.Text = user.user.bio;
+            Age.Text = user.user.age.ToString();
         }
 
         private void Save_Clicked(object sender, EventArgs e)
@@ -36,6 +41,16 @@ namespace LoveFinder.Views
 
         private void Remove_Clicked(object sender, EventArgs e)
         {
+            user.DeleteAccount(user.user);
+            user.user.age = 0;
+            user.user.bio = "";
+            user.user.firstname = "";
+            user.user.lastname = "";
+            user.user.location = "";
+            user.user.password = "";
+            user.user.sexualOrientation = "";
+            user.user.mail = "";
+            user.user.gender = "";
             MainPage mainPage = new MainPage();
             mainPage.user = user;
             Navigation.PushAsync(mainPage);
