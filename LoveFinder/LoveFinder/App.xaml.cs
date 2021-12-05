@@ -12,6 +12,7 @@ namespace LoveFinder
         {
             UserController user = new UserController();
             User testuser = new User("test", "test", "Jan", "Wimpel", 20, "Male", "Hetero");
+            testuser.bio = "Dit is een testbio";
             user.CreateAccount(testuser);
             InitializeComponent();
             MainPage page = new MainPage();
