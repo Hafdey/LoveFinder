@@ -8,6 +8,7 @@ namespace LoveFinder
 {
     public partial class App : Application
     {
+        public static string DatabaseLocation = string.Empty;
         public App()
         {
             UserController user = new UserController();
@@ -17,6 +18,14 @@ namespace LoveFinder
             InitializeComponent();
             MainPage page = new MainPage();
             page.user = user;
+            MainPage = new NavigationPage(page);
+        }
+        public App(string databaseLocation)
+        {
+            InitializeComponent();
+            DatabaseLocation = databaseLocation;
+            MainPage page = new MainPage();
+            ///page.user = user;
             MainPage = new NavigationPage(page);
         }
 
