@@ -14,29 +14,30 @@ namespace LoveFinder.Views
     public partial class ChangePicturePage : ContentPage
     {
         public UserController user { get; set; }
-        public ChangePicturePage()
+        PictureController PictureController = new PictureController();
+        public ChangePicturePage(int _id)
         {
             InitializeComponent();
+            PictureController.picID = _id;
         }
 
         private void SetAsProfilePic_Clicked(object sender, EventArgs e)
         {
-            EditPicturePage editPicturePage = new EditPicturePage();
-            editPicturePage.user = user;
-            Navigation.PushAsync(editPicturePage);
+            PictureController.SetProfilePic(user.currentUser.userID);
+            Navigation.PopAsync();
         }
 
         private void DeletePic_Clicked(object sender, EventArgs e)
         {
-            EditPicturePage editPicturePage = new EditPicturePage();
-            editPicturePage.user = user;
-            Navigation.PushAsync(editPicturePage);
+            PictureController.RemovePic(user.currentUser.userID);
+            Navigation.PopAsync();
         }
 
         private void ReplacePic_Clicked(object sender, EventArgs e)
         {
             UploadPicturePage uploadPicturePage = new UploadPicturePage();
             uploadPicturePage.user = user;
+            uploadPicturePage.pictureController = PictureController;
             Navigation.PushAsync(uploadPicturePage);
         }
 

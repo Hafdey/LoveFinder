@@ -19,7 +19,7 @@ namespace LoveFinder.Views
     public partial class UploadPicturePage : ContentPage
     {
         public UserController user { get; set; }
-        PictureController pictureController = new PictureController();
+        public PictureController pictureController { get; set; }
         public UploadPicturePage()
         {
             InitializeComponent();

@@ -8,35 +8,35 @@
             <Frame CornerRadius="20" Padding="0" Margin="70,5,70,10">
                 <Image x:Name="pic1" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
             </Frame>
             <Frame CornerRadius="20" Padding="0" Margin="35,0,200,0">
                 <Image x:Name="pic2" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
             </Frame>
             <Frame CornerRadius="20" Padding="0" Margin="200,-131,35,0">
                 <Image x:Name="pic3" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
             </Frame>
             <Frame CornerRadius="20" Padding="0" Margin="35,30,200,0">
                 <Image x:Name="pic4" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
             </Frame>
             <Frame CornerRadius="20" Padding="0" Margin="200,-131,35,30">
                 <Image x:Name="pic5" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
             </Frame>

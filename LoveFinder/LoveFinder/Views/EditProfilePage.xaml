@@ -7,7 +7,7 @@
         <ScrollView>
             <StackLayout BackgroundColor="#1b1b1b">
                 <Frame CornerRadius="20" Padding="0" Margin="5,25,240,110">
-                    <Image Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image x:Name="profilepic" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>

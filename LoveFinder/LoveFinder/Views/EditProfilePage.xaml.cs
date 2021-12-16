@@ -16,6 +16,7 @@ namespace LoveFinder.Views
     public partial class EditProfilePage : ContentPage
     {
         public UserController user { get; set; }
+        PictureController PictureController = new PictureController();
 
         public EditProfilePage()
         {
@@ -23,10 +24,16 @@ namespace LoveFinder.Views
         }
         protected override void OnAppearing()
         {
+            var pic = PictureController.GetProfilePic(user.currentUser.userID);
+            if(pic != null)
+            {
+                profilepic.Source = ImageSource.FromStream(() => pic);
+            }
             Firstname.Text = user.currentUser.firstname;
             Lastname.Text = user.currentUser.lastname;
             Age.Text = user.currentUser.age.ToString();
             Bio.Text = user.currentUser.bio;
+            
         }
 
         private void Save_Clicked(object sender, EventArgs e)
