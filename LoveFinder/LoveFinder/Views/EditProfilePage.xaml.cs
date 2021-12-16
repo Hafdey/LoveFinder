@@ -31,10 +31,24 @@ namespace LoveFinder.Views
 
         private void Save_Clicked(object sender, EventArgs e)
         {
-            user.EditUser(user.currentUser, Bio.Text, Age.Text);
-            EditProfilePage editProfilePage = new EditProfilePage();
-            editProfilePage.user = user;
-            Navigation.PushAsync(editProfilePage);
+            if(Bio.Text != null && Age.Text != null)
+            {
+                if(Int32.Parse(Age.Text) > 18)
+                {
+                    user.EditUser(user.currentUser, Bio.Text, Age.Text);
+                    LikePage likePage = new LikePage();
+                    likePage.user = user;
+                    Navigation.PushAsync(likePage);
+                }
+                else
+                {
+                    DisplayAlert("Ingevoerde leeftijd niet correct", "De ingevoerde leeftijd is niet voldoende om verder te gaan met het gebruik van deze applicatie", "Oke");
+                }
+            }
+            else
+            {
+                DisplayAlert("Vul alle velden in", "Vul a.u.b. alle velden in", "Oke");
+            }
         }
 
         private void Signout_Clicked(object sender, EventArgs e)
