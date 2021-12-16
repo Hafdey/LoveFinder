@@ -1,6 +1,11 @@
 ﻿using LoveFinder.Controllers;
+using LoveFinder.Models;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,19 +19,36 @@ namespace LoveFinder.Views
     public partial class UploadPicturePage : ContentPage
     {
         public UserController user { get; set; }
+        PictureController pictureController = new PictureController();
         public UploadPicturePage()
         {
             InitializeComponent();
         }
 
-        private void Upload_Clicked(object sender, EventArgs e)
+        async private void Upload_Clicked(object sender, EventArgs e)
         {
+            await CrossMedia.Current.Initialize();
+            Picture picture = new Picture();
+            MemoryStream ms = new MemoryStream();
+            var mediaOptions = new PickMediaOptions()
+            {
+                PhotoSize = PhotoSize.Medium
+            };
+            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+            var picStream = selectedImageFile.GetStream();
 
+            picStream.CopyTo(ms);
+            var byteArray = ms.ToArray();
+            picture.isProfilePic = false;
+            picture.picByte = byteArray;
+            picture.userID = user.currentUser.userID;
+            pictureController.AddPicture(picture);
+            Navigation.PopAsync();
         }
 
         private void Back_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PopAsync();
         }
     }
 }

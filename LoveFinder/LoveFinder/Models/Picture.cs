@@ -1,6 +1,8 @@
-﻿using SQLite;
+﻿using Plugin.Media.Abstractions;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace LoveFinder.Models
@@ -10,7 +12,7 @@ namespace LoveFinder.Models
         [PrimaryKey, AutoIncrement]
         public int picID { get; set; }
         public int userID { get; set; }
-        public string picURL { get; set; }
+        public byte[] picByte { get; set; }
         public bool isProfilePic { get; set; }
     }
 }

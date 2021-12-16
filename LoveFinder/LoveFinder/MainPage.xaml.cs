@@ -28,9 +28,9 @@ namespace LoveFinder
             {
                 if(user.Login(Mail.Text, Password.Text))
                 {
-                    EditProfilePage editProfilePage = new EditProfilePage();
-                    editProfilePage.user = user;
-                    Navigation.PushAsync(editProfilePage);
+                    LikePage likePage = new LikePage();
+                    likePage.user = user;
+                    Navigation.PushAsync(likePage);
                 }
                 else
                 {

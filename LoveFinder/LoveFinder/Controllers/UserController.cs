@@ -22,6 +22,7 @@ namespace LoveFinder.Controllers
                 sQLiteconnection.CreateTable<User>();
                 int insertedRows = sQLiteconnection.Insert(user);
                 sQLiteconnection.Table<User>().ToList();
+                currentUser = user;
                 return true;
             }
             else

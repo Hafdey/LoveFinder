@@ -23,32 +23,31 @@ namespace LoveFinder.Views
 
         private void Savebtn_Clicked(object sender, EventArgs e)
         {
-            UserController userController = new UserController();
-            User user = new User();
-            user.firstname = Firstname.Text;
-            user.lastname = Lastname.Text;
-            user.age = Int32.Parse(Birthday.Text);
-            user.gender = Gender.SelectedItem.ToString();
-            user.sexualOrientation = SexualOrientation.SelectedItem.ToString();
-            user.mail = Mail.Text;
-            user.location = "";
-            user.bio = "";
+            User newuser = new User();
+            newuser.firstname = Firstname.Text;
+            newuser.lastname = Lastname.Text;
+            newuser.age = Int32.Parse(Birthday.Text);
+            newuser.gender = Gender.SelectedItem.ToString();
+            newuser.sexualOrientation = SexualOrientation.SelectedItem.ToString();
+            newuser.mail = Mail.Text;
+            newuser.location = "";
+            newuser.bio = "";
             if(Password1.Text == Password2.Text)
             {
-                user.password = Password1.Text;
+                newuser.password = Password1.Text;
             }
             else
             {
                 DisplayAlert("Wachtwoorden niet juist", "De ingegeven wachtwoorden komen niet overeen", "Oke");
             }
 
-            bool success = userController.CreateUser(user);
+            bool success = user.CreateUser(newuser);
 
             if (success)
             {
                 DisplayAlert("Gelukt!", "Je account is succesvol aangemaakt", "Oke");
                 EditProfilePage editProfilePage = new EditProfilePage();
-                editProfilePage.user = userController;
+                editProfilePage.user = user;
                 Navigation.PushAsync(editProfilePage);
             }
             else

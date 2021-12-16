@@ -65,6 +65,7 @@ namespace LoveFinder.Views
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             EditPicturePage editPicturePage = new EditPicturePage();
+            editPicturePage.user = user;
             Navigation.PushAsync(editPicturePage);
         }
     }

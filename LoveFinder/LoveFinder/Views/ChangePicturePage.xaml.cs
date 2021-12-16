@@ -42,9 +42,7 @@ namespace LoveFinder.Views
 
         private void Back_Clicked(object sender, EventArgs e)
         {
-            EditPicturePage editPicturePage = new EditPicturePage();
-            editPicturePage.user = user;
-            Navigation.PushAsync(editPicturePage);
+            Navigation.PopAsync();
         }
     }
 }
