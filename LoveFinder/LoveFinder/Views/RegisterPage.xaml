@@ -9,7 +9,7 @@
                 <Image Source="logo.png" Margin="50,0,50,0"/>
                 <Entry Style="{StaticResource Inputfield}" x:Name="Firstname" Placeholder="Voornaam:" Margin="50,10,50,0"/>
                 <Entry Style="{StaticResource Inputfield}" x:Name="Lastname" Placeholder="Achternaam:" Margin="50,5,50,0"/>
-                <Entry Style="{StaticResource Inputfield}" x:Name="Birthday" Placeholder="Leeftijd:" Margin="50,5,50,0"/>
+                <Entry Style="{StaticResource Inputfield}" x:Name="Birthday" Keyboard="Numeric" Placeholder="Leeftijd:" Margin="50,5,50,0"/>
                 <Picker x:Name="Gender" Title="Geslacht:" Margin="50,5,50,0" Style="{StaticResource Pickerstyle}">
                     <Picker.Items>
                         <x:String>Man</x:String>
@@ -26,7 +26,7 @@
                         <x:String>Anders</x:String>
                     </Picker.Items>
                 </Picker>
-                <Entry Style="{StaticResource Inputfield}" x:Name="Mail" Placeholder="E-Mail:" Margin="50,5,50,0"/>
+                <Entry Style="{StaticResource Inputfield}" x:Name="Mail" Placeholder="E-Mail:" Keyboard="Email" Margin="50,5,50,0"/>
                 <Entry Style="{StaticResource Inputfield}" x:Name="Password1" Placeholder="Wachtwoord:" IsPassword="True" Margin="50,5,50,0"/>
                 <Entry Style="{StaticResource Inputfield}" x:Name="Password2" Placeholder="Valideer wachtwoord" IsPassword="True" Margin="50,5,50,0"/>
                 <Button Style="{StaticResource Orangebtn}" x:Name="Savebtn" Text="Maak account" Clicked="Savebtn_Clicked" Margin="50,10,50,0"/>

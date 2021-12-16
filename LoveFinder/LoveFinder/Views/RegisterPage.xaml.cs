@@ -1,5 +1,6 @@
 ﻿using LoveFinder.Controllers;
 using LoveFinder.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,47 +23,43 @@ namespace LoveFinder.Views
 
         private void Savebtn_Clicked(object sender, EventArgs e)
         {
-            if (Firstname.Text != null && Lastname.Text != null && Birthday.Text != null && Gender.SelectedItem.ToString() != null && SexualOrientation.SelectedItem.ToString() != null && Mail.Text != null && Password1.Text != null && Password2.Text != null)
+            UserController userController = new UserController();
+            User user = new User();
+            user.firstname = Firstname.Text;
+            user.lastname = Lastname.Text;
+            user.age = Int32.Parse(Birthday.Text);
+            user.gender = Gender.SelectedItem.ToString();
+            user.sexualOrientation = SexualOrientation.SelectedItem.ToString();
+            user.mail = Mail.Text;
+            user.location = "";
+            user.bio = "";
+            if(Password1.Text == Password2.Text)
             {
-                if(Password1.Text == Password2.Text)
-                {
-                    var next = user.FindUser(Mail.Text);
-                    if (next != null)
-                    {
-                        DisplayAlert("Bestaand account", "Dit account bestaat al", "Oke");
-                    }
-                    else
-                    {
-                        user.user.firstname = Firstname.Text;
-                        user.user.lastname = Lastname.Text;
-                        user.user.age = Int32.Parse(Birthday.Text);
-                        user.user.bio = "";
-                        user.user.gender = Gender.SelectedItem.ToString();
-                        user.user.sexualOrientation = SexualOrientation.SelectedItem.ToString();
-                        user.user.location = "";
-                        user.user.password = Password1.Text;
-                        user.user.mail = Mail.Text;
-                        user.CreateAccount(user.user);
-                        EditProfilePage editProfilePage = new EditProfilePage(user);
-                        Navigation.PushAsync(editProfilePage);
-                    }
-                }
-                else
-                {
-                    DisplayAlert("Fout wachtwoorden", "Wachtwoorden komen niet overeen", "Oke");
-                    Password1.Text = null;
-                    Password2.Text = null;
-                }
+                user.password = Password1.Text;
             }
             else
             {
-                DisplayAlert("Fout vulden", "Niet alle velden zijn ingevuld", "Oke");
+                DisplayAlert("Wachtwoorden niet juist", "De ingegeven wachtwoorden komen niet overeen", "Oke");
+            }
+
+            bool success = userController.CreateUser(user);
+
+            if (success)
+            {
+                DisplayAlert("Gelukt!", "Je account is succesvol aangemaakt", "Oke");
+                EditProfilePage editProfilePage = new EditProfilePage();
+                editProfilePage.user = userController;
+                Navigation.PushAsync(editProfilePage);
+            }
+            else
+            {
+                DisplayAlert("Fout", "Dit account bestaat al", "Oke");
             }
         }
 
         private void Backbtn_Clicked(object sender, EventArgs e)
         {
-            
+            Navigation.PopAsync();
         }
     }
 }

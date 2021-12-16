@@ -13,7 +13,7 @@ namespace LoveFinder
 {
     public partial class MainPage : ContentPage
     {
-        public UserController user { get; set; }
+        public UserController user = new UserController();
         public MainPage()
         {
             InitializeComponent();
@@ -26,33 +26,20 @@ namespace LoveFinder
         {
             if(Mail.Text != null && Password.Text != null)
             {
-                bool next = user.Login(Mail.Text, Password.Text);
-                if (next)
+                if(user.Login(Mail.Text, Password.Text))
                 {
-                    var tmp = user.FindUser(Mail.Text);
-                    user.user.firstname = tmp.firstname;
-                    user.user.lastname = tmp.lastname;
-                    user.user.age = tmp.age;
-                    user.user.bio = tmp.bio;
-                    user.user.gender = tmp.gender;
-                    user.user.sexualOrientation = tmp.sexualOrientation;
-                    user.user.location = tmp.location;
-                    user.user.password = tmp.password;
-                    user.user.mail = tmp.mail;
-                    LikePage likePage = new LikePage();
-                    likePage.user = user;
-                    Navigation.PushAsync(likePage);
+                    EditProfilePage editProfilePage = new EditProfilePage();
+                    editProfilePage.user = user;
+                    Navigation.PushAsync(editProfilePage);
                 }
                 else
                 {
-                    DisplayAlert("Geen correcte gegevens", "Ingevoerde gegevens zijn niet correct", "Oke");
+                    DisplayAlert("Foutieve gegevens", "De ingevoerde gegevens zijn niet correct", "Oke");
                 }
             }
             else
             {
-                Mail.Text = null;
-                Password.Text = null;
-                DisplayAlert("Missende velden", "Graag alle velden invullen a.u.b.", "Oke");
+                DisplayAlert("Niet alle gegevens ingevuld", "Vul a.u.b. alle gevraagde velden in", "Oke");
             }
         }
 

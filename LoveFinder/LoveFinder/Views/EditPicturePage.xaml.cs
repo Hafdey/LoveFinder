@@ -28,13 +28,13 @@ namespace LoveFinder.Views
 
         private void Save_Clicked(object sender, EventArgs e)
         {
-            EditProfilePage editProfilePage = new EditProfilePage(user);
+            EditProfilePage editProfilePage = new EditProfilePage();
             Navigation.PushAsync(editProfilePage);
         }
-
+       
         private void Back_Clicked(object sender, EventArgs e)
         {
-            EditProfilePage editProfilePage = new EditProfilePage(user);
+            EditProfilePage editProfilePage = new EditProfilePage();
             Navigation.PushAsync(editProfilePage);
         }
     }

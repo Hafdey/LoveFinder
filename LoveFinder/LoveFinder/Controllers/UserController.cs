@@ -1,32 +1,74 @@
 ﻿using LoveFinder.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LoveFinder.Controllers
 {
-   public class UserController
+    public class UserController
     {
-        public User user = new User("","","","",0,"","");
-        public void CreateAccount(User newuser)
+        public User currentUser = null;
+        public UserController()
         {
-            user.CreateAccount(newuser);
+
         }
-        public void DeleteAccount(User deluser)
+        public bool CreateUser(User user)
         {
-            user.DeleteAccount(deluser);
+            bool success = CheckUser(user);
+            if (success)
+            {
+                SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation);
+                sQLiteconnection.CreateTable<User>();
+                int insertedRows = sQLiteconnection.Insert(user);
+                sQLiteconnection.Table<User>().ToList();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool CheckUser(User user)
+        {
+            User found = null;
+            SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation);
+            try
+            {
+                found = sQLiteconnection.Table<User>().First(x => x.mail == user.mail);
+            }
+            catch (Exception)
+            {
+
+            }
+            if (found == null)
+            {
+                return true;
+            }
+            return false;
         }
         public bool Login(string mail, string password)
         {
-            return user.Login(mail, password);
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                try
+                {
+                    currentUser = sQLiteconnection.Table<User>().First(x => x.mail == mail && x.password == password);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            if (currentUser != null)
+            {
+                return true;
+            }
+            return false;
         }
-        public User FindUser(string mail)
+        public bool EditUser(User edituser, string newbio, string newage)
         {
-            return user.FindUser(mail);
-        }
-        public void EditUser(User edituser ,string bio, string age)
-        {
-            user.EditUser(edituser, bio, age);
+            return true;
         }
     }
 }

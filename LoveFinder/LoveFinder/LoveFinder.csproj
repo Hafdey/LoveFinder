@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DB\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Xamarin.Forms.Platform.Android">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.forms\5.0.0.2012\lib\MonoAndroid10.0\Xamarin.Forms.Platform.Android.dll</HintPath>
     </Reference>
