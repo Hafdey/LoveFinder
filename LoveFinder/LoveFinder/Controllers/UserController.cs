@@ -66,9 +66,25 @@ namespace LoveFinder.Controllers
             }
             return false;
         }
-        public bool EditUser(User edituser, string newbio, string newage)
+        public void EditUser(User edituser, string newbio, string newage)
         {
-            return true;
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var getuser = sQLiteconnection.Table<User>().First(x => x.mail == edituser.mail && x.password == edituser.password);
+                getuser.bio = newbio;
+                getuser.age = Int32.Parse(newage);
+                currentUser = getuser;
+                sQLiteconnection.Update(getuser);
+                sQLiteconnection.Close();
+            }
+        }
+        public void RemoveUser(User remuser)
+        {
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                sQLiteconnection.Delete(remuser);
+                sQLiteconnection.Close();
+            }
         }
     }
 }

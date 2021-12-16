@@ -31,17 +31,21 @@ namespace LoveFinder.Views
 
         private void Save_Clicked(object sender, EventArgs e)
         {
-
+            user.EditUser(user.currentUser, Bio.Text, Age.Text);
+            EditProfilePage editProfilePage = new EditProfilePage();
+            editProfilePage.user = user;
+            Navigation.PushAsync(editProfilePage);
         }
 
         private void Signout_Clicked(object sender, EventArgs e)
         {
-            
+            Navigation.PopToRootAsync();
         }
 
         private void Remove_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PopToRootAsync();
+            user.RemoveUser(user.currentUser);
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
