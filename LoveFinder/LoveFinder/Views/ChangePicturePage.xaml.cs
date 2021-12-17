@@ -20,6 +20,14 @@ namespace LoveFinder.Views
             InitializeComponent();
             PictureController.picID = _id;
         }
+        protected override void OnAppearing()
+        {
+            var pictures = PictureController.GetPicture(user.currentUser.userID);
+            if (pictures != null)
+            {
+                picture.Source = ImageSource.FromStream(() => pictures[pictures.Count - PictureController.picID]);
+            }
+        }
 
         private void SetAsProfilePic_Clicked(object sender, EventArgs e)
         {

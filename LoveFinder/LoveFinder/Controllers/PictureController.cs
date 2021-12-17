@@ -101,10 +101,18 @@ namespace LoveFinder.Controllers
         {
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
             {
-                var bytePic = sQLiteconnection.Table<Picture>().First(x => x.userID == uID && x.isProfilePic == true);
-                var stream = new MemoryStream(bytePic.picByte);
-                sQLiteconnection.Close();
-                return stream;
+                try
+                {
+                    var bytePic = sQLiteconnection.Table<Picture>().First(x => x.userID == uID && x.isProfilePic == true);
+                    var stream = new MemoryStream(bytePic.picByte);
+                    sQLiteconnection.Close();
+                    return stream;
+                }
+                catch (Exception)
+                {
+
+                }
+                return null;
             }
         }
     }
