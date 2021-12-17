@@ -3,8 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LoveFinder.Views.MessagesPage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#808080">
-            
-        </StackLayout>
+       <ListView x:Name="messagelist" BackgroundColor="#292929" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BackgroundColor="#808080" Orientation="Vertical" >
+                            <StackLayout>
+                                <Image Source="{Binding profilepic}" WidthRequest="70" HeightRequest="40" VerticalOptions="Center" TranslationX="-143" TranslationY="2"/>
+                            </StackLayout>
+                            <Label Text="{Binding name}" TextColor="#ffa31a" TranslationY="-45" TranslationX="80" FontAttributes="Bold"/>
+                            <Label Text="{Binding message}" TextColor="#ffff" TranslationY="-50" TranslationX="80"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

@@ -31,6 +31,8 @@ namespace LoveFinder
                 sQLiteconnection.CreateTable<Match>();
                 sQLiteconnection.CreateTable<User>();
                 sQLiteconnection.CreateTable<Picture>();
+                sQLiteconnection.CreateTable<Message>();
+                sQLiteconnection.CreateTable<MessageList>();
             }
             MainPage page = new MainPage();
             MainPage = new NavigationPage(page);

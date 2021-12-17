@@ -1,10 +1,15 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LoveFinder.Models
 {
-    class MessageList
+    public class MessageList
     {
+        [PrimaryKey, AutoIncrement]
+        public int messageListID { get; set; }
+        public int userID { get; set; }
+        public int targetID { get; set; }
     }
 }

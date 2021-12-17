@@ -4,7 +4,11 @@ using System.Text;
 
 namespace LoveFinder.Controllers
 {
-    class MessageController
+    public class MessageController
     {
+        public void SendMessage()
+        {
+
+        }
     }
 }

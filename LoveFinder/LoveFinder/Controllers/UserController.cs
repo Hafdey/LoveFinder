@@ -87,6 +87,15 @@ namespace LoveFinder.Controllers
                 sQLiteconnection.Close();
             }
         }
+        public User GetSpecificUser(int uID)
+        {
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var foundusr = sQLiteconnection.Table<User>().First(x => x.userID == uID);
+                sQLiteconnection.Close();
+                return foundusr;
+            }
+        }
         public User getUser()
         {
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))

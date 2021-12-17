@@ -9,6 +9,7 @@ namespace LoveFinder.Controllers
     public class MatchController
     {
         private List<Liked> userlikedlist { get; set; }
+        MessageListController messagelistcontroller = new MessageListController();
         public int matches { get; set; }
         public int matchUser(int uID)
         {
@@ -31,6 +32,7 @@ namespace LoveFinder.Controllers
                                 sQLiteconnection.Insert(match);
                                 var dellike = sQLiteconnection.Table<Liked>().First(x => x.userID == uID && x.likedID == userlike.likedID);
                                 sQLiteconnection.Delete(dellike);
+                                messagelistcontroller.CreateNewMessageList(userlike.userID, userlike.likedID);
                                 matches++;
                             }
                         }

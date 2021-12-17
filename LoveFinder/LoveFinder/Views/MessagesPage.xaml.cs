@@ -1,6 +1,8 @@
 ﻿using LoveFinder.Controllers;
+using LoveFinder.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +16,32 @@ namespace LoveFinder.Views
     public partial class MessagesPage : ContentPage
     {
         public UserController user { get; set; }
+        MessageListController msgl = new MessageListController();
+        PictureController pcontroller = new PictureController(); 
+        List<MessageList> msglist = new List<MessageList>();
+
         public MessagesPage()
         {
             InitializeComponent();
         }
+        protected override void OnAppearing()
+        {
+            List<Chat> chats = new List<Chat>();
+            msglist = msgl.GetAllMessageLists(user.currentUser.userID);
+            foreach(var msg in msglist)
+            {
+                Chat chat = new Chat();
+                User target = user.GetSpecificUser(msg.targetID);
+                Stream targetpf = pcontroller.GetProfilePic(msg.targetID);
+                var profilepic = ImageSource.FromStream(() => targetpf);
+                var firstname = target.firstname;
+                chat.name = target.firstname;
+                chat.profilepic = profilepic;
+                chat.message = "TEST";
+                chats.Add(chat);
+            }
+            messagelist.ItemsSource = chats;
+        }
+
     }
 }
