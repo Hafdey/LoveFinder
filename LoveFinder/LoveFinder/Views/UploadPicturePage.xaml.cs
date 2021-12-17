@@ -24,7 +24,14 @@ namespace LoveFinder.Views
         {
             InitializeComponent();
         }
-
+        protected override void OnAppearing()
+        {
+            var pictures = pictureController.GetPicture(user.currentUser.userID);
+            if (pictures != null)
+            {
+                picture.Source = ImageSource.FromStream(() => pictures[pictures.Count - pictureController.picID]);
+            }
+        }
         async private void Upload_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();

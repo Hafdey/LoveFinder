@@ -66,13 +66,12 @@ namespace LoveFinder.Controllers
         }
         public void SetProfilePic(int uID)
         {
-            var pics = new List<Picture>();
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
             {
-                pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == uID).ToList();
+                var pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == uID).ToList();
                 try
                 {
-                    var profilepic = sQLiteconnection.Table<Picture>().First(x => x.isProfilePic == true && x.userID == uID);
+                    var profilepic = pics.Find(x => x.isProfilePic == true);
                     profilepic.isProfilePic = false;
                     sQLiteconnection.Update(profilepic);
                 }
@@ -80,9 +79,9 @@ namespace LoveFinder.Controllers
                 {
 
                 }
-                int newprofilepic = pics.Count - picID;
-                pics[newprofilepic].isProfilePic = true;
-                sQLiteconnection.Update(pics[newprofilepic]);
+                var newprofilepic = pics[pics.Count - picID];
+                newprofilepic.isProfilePic = true;
+                sQLiteconnection.Update(newprofilepic);
                 sQLiteconnection.Close();
             }
         }

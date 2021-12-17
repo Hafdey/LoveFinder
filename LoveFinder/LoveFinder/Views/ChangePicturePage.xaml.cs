@@ -15,6 +15,7 @@ namespace LoveFinder.Views
     {
         public UserController user { get; set; }
         PictureController PictureController = new PictureController();
+        private List<System.IO.Stream> pictures { get; set; }
         public ChangePicturePage(int _id)
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace LoveFinder.Views
         }
         protected override void OnAppearing()
         {
-            var pictures = PictureController.GetPicture(user.currentUser.userID);
+            pictures = PictureController.GetPicture(user.currentUser.userID);
             if (pictures != null)
             {
                 picture.Source = ImageSource.FromStream(() => pictures[pictures.Count - PictureController.picID]);
@@ -31,6 +32,8 @@ namespace LoveFinder.Views
 
         private void SetAsProfilePic_Clicked(object sender, EventArgs e)
         {
+            var picfile = picture.Source;
+           
             PictureController.SetProfilePic(user.currentUser.userID);
             Navigation.PopAsync();
         }
