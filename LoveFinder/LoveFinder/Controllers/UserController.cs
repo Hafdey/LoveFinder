@@ -87,5 +87,225 @@ namespace LoveFinder.Controllers
                 sQLiteconnection.Close();
             }
         }
+        public User getUser()
+        {
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                if (currentUser.sexualOrientation == "Hetero")
+                {
+                    if(currentUser.gender == "Man")
+                    {
+                        int ctr = -1;
+                        var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Hetero" && x.gender == "Vrouw").ToList();
+                        var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                        foreach(var possible in possiblematch)
+                        {
+                            ctr++;
+                            try
+                            {
+                                if (possible.userID != likes[ctr].likedID)
+                                {
+                                    return possible;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                return possible;
+                            }
+                            if(ctr == possiblematch.Count - 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    if(currentUser.gender == "Vrouw")
+                    {
+                        //Alleen mannen
+                        int ctr = -1;
+                        var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Hetero" && x.gender == "Man").ToList();
+                        var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                        foreach (var possible in possiblematch)
+                        {
+                            ctr++;
+                            try
+                            {
+                                if (possible.userID != likes[ctr].likedID)
+                                {
+                                    return possible;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                return possible;
+                            }
+                            if (ctr == possiblematch.Count - 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Alleen anders
+                        int ctr = -1;
+                        var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Hetero" && x.gender == "Anders").ToList();
+                        var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                        foreach (var possible in possiblematch)
+                        {
+                            ctr++;
+                            try
+                            {
+                                if (possible.userID != likes[ctr].likedID)
+                                {
+                                    return possible;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                return possible;
+                            }
+                            if (ctr == possiblematch.Count - 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (currentUser.sexualOrientation == "Homo" || currentUser.sexualOrientation == "Lesbisch")
+                {
+                    if (currentUser.gender == "Man")
+                    {
+                        //Alleen mannen
+                        int ctr = -1;
+                        var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Homo" && x.gender == "Man").ToList();
+                        var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                        foreach (var possible in possiblematch)
+                        {
+                            ctr++;
+                            try
+                            {
+                                if (possible.userID != likes[ctr].likedID)
+                                {
+                                    return possible;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                return possible;
+                            }
+                            if (ctr == possiblematch.Count - 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    if (currentUser.gender == "Vrouw")
+                    {
+                        //Alleen vrouwen
+                        int ctr = -1;
+                        var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Lesbisch" && x.gender == "Vrouw").ToList();
+                        var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                        foreach (var possible in possiblematch)
+                        {
+                            ctr++;
+                            try
+                            {
+                                if (possible.userID != likes[ctr].likedID)
+                                {
+                                    return possible;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                return possible;
+                            }
+                            if (ctr == possiblematch.Count - 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Alleen anders
+                        int ctr = -1;
+                        var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Homo" || x.sexualOrientation == "Lesbisch" && x.gender == "Anders").ToList();
+                        var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                        foreach (var possible in possiblematch)
+                        {
+                            ctr++;
+                            try
+                            {
+                                if (possible.userID != likes[ctr].likedID)
+                                {
+                                    return possible;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                return possible;
+                            }
+                            if (ctr == possiblematch.Count - 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (currentUser.sexualOrientation == "Bi")
+                {
+                    //Alles
+                    int ctr = -1;
+                    var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Bi").ToList();
+                    var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                    foreach (var possible in possiblematch)
+                    {
+                        ctr++;
+                        try
+                        {
+                            if (possible.userID != likes[ctr].likedID)
+                            {
+                                return possible;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            return possible;
+                        }
+                        if (ctr == possiblematch.Count - 1)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (currentUser.sexualOrientation == "Anders")
+                {
+                    //Alles
+                    int ctr = -1;
+                    var possiblematch = sQLiteconnection.Table<User>().Where(x => x.sexualOrientation == "Anders").ToList();
+                    var likes = sQLiteconnection.Table<Liked>().Where(x => x.userID == currentUser.userID).ToList();
+                    foreach (var possible in possiblematch)
+                    {
+                        ctr++;
+                        try
+                        {
+                            if (possible.userID != likes[ctr].likedID)
+                            {
+                                return possible;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            return possible;
+                        }
+                        if (ctr == possiblematch.Count - 1)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return currentUser;
+        }
     }
 }

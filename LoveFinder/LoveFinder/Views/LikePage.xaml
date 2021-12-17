@@ -9,10 +9,10 @@
     </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout Background="#1b1b1b">
-            <Image Source="placeholderport.png" Margin="50,0,50,10"/>
-            <Image Source="placeholderport.png" Margin="10,0,245,0"/>
-            <Image Source="placeholderport.png" Margin="127,-111,128,0"/>
-            <Image Source="placeholderport.png" Margin="245,-111,10,0"/>
+            <Image x:Name="headpic" Source="placeholderport.png" Margin="50,0,50,10"/>
+            <Image x:Name="pic1" Source="placeholderport.png" Margin="10,0,245,0"/>
+            <Image x:Name="pic2" Source="placeholderport.png" Margin="127,-111,128,0"/>
+            <Image x:Name="pic3" Source="placeholderport.png" Margin="245,-111,10,0"/>
             <Label x:Name="TargetText" Text="Hier komt de tekst van de mogelijke match" Margin="10,0,10,0" TextColor="#fff"/>
             <ImageButton x:Name="Like" BackgroundColor="#07e000" BorderColor="#035c00" Clicked="Like_Clicked" Source="Heart.png" CornerRadius="200" Margin="20,10,230,0" Padding="10,10,10,0"/>
             <ImageButton x:Name="Dislike" BackgroundColor="#e00000" BorderColor="#5c0000" Clicked="Dislike_Clicked" Source="Nope.png" CornerRadius="200" Margin="235,-99,20,0" Padding="10,10,10,10"/>

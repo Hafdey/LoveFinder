@@ -98,21 +98,45 @@ namespace LoveFinder.Controllers
         }
         public Stream GetProfilePic(int uID)
         {
+            MemoryStream stream = null;
+            bool success = false;
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
                     var bytePic = sQLiteconnection.Table<Picture>().First(x => x.userID == uID && x.isProfilePic == true);
-                    var stream = new MemoryStream(bytePic.picByte);
+                    stream = new MemoryStream(bytePic.picByte);
                     sQLiteconnection.Close();
-                    return stream;
+                    success = true;
                 }
                 catch (Exception)
                 {
 
                 }
-                return null;
+                if (!success)
+                {
+                    return null;
+                }
+                return stream;
             }
+        }
+        public List<Stream> PossibleMatchPics(int uID)
+        {
+            var pics = new List<Picture>();
+            var streampic = new List<Stream>();
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == uID).ToList();
+                var doublepic = pics.Find(x => x.isProfilePic == true);
+                pics.Remove(doublepic);
+                sQLiteconnection.Close();
+            }
+            foreach (Picture pic in pics)
+            {
+                var stream = new MemoryStream(pic.picByte);
+                streampic.Add(stream);
+            }
+            return streampic;
         }
     }
 }

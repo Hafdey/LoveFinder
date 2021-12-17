@@ -1,5 +1,6 @@
 ﻿using LoveFinder.Controllers;
 using LoveFinder.Models;
+using SQLite;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,8 +25,14 @@ namespace LoveFinder
         {
             InitializeComponent();
             DatabaseLocation = databaseLocation;
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(DatabaseLocation))
+            {
+                sQLiteconnection.CreateTable<Liked>();
+                sQLiteconnection.CreateTable<Match>();
+                sQLiteconnection.CreateTable<User>();
+                sQLiteconnection.CreateTable<Picture>();
+            }
             MainPage page = new MainPage();
-            ///page.user = user;
             MainPage = new NavigationPage(page);
         }
 
