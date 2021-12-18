@@ -60,6 +60,9 @@ namespace LoveFinder.Views
 
         private void Signout_Clicked(object sender, EventArgs e)
         {
+            LoggedInUserController loggedInUserController = new LoggedInUserController();
+            loggedInUserController.currentuser = user.currentUser;
+            loggedInUserController.LogoutUser();
             Navigation.PopToRootAsync();
         }
 

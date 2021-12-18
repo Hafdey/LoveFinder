@@ -1,5 +1,6 @@
 ﻿using LoveFinder.Controllers;
 using LoveFinder.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +12,14 @@ namespace LoveFinder
     {
         public DataTemplate fromTemplate { get; set; }
         public DataTemplate toTemplate { get; set; }
-        public UserController user { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            return ((Message)item).senderID.Equals(user.currentUser.userID) ? fromTemplate : toTemplate;
+            using(SQLiteConnection sql = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var user = sql.Table<LoggedInUser>().ToList();
+                return ((Message)item).senderID.Equals(user[0].userID) ? fromTemplate : toTemplate;
+            }
         }
     }
 }

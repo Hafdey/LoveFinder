@@ -26,6 +26,21 @@ namespace LoveFinder.Controllers
                 return msglist;
             }
         }
+        public void MessageListSwitch(int uID)
+        {
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var msglist = sQLiteconnection.Table<MessageList>().Where(x => x.targetID == uID).ToList();
+                foreach(var msg in msglist)
+                {
+                    int tmp = 0;
+                    tmp = msg.userID;
+                    msg.userID = msg.targetID;
+                    msg.targetID = tmp;
+                    sQLiteconnection.Update(msg);
+                }
+            }
+        }
         public void GetSpecificMessageList()
         {
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))

@@ -47,5 +47,20 @@ namespace LoveFinder.Controllers
                 return -1;
             }
         }
+        public void MatchSwitch(int uID)
+        {
+            using(SQLiteConnection sql = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var matches = sql.Table<Match>().Where(x => x.targetID == uID);
+                foreach(var match in matches)
+                {
+                    int tmp = 0;
+                    tmp = match.userID;
+                    match.userID = uID;
+                    match.targetID = tmp;
+                    sql.Update(match);
+                }
+            }
+        }
     }
 }

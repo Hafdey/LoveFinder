@@ -8,9 +8,8 @@
             <DataTemplate x:Key="fromTemplate">
                 <ViewCell>
                     <ViewCell.View>
-                        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="End">
-                            <Label Text="{Binding sendDate}"/>
-                            <Label Text="{Binding message}"/>
+                        <StackLayout BackgroundColor="Black" Orientation="Horizontal" Spacing="10" HorizontalOptions="End" TranslationX="-5">
+                            <Label TextColor="#ffa31a" Text="{Binding message}" Margin="3,0,3,0"/>
                         </StackLayout>
                     </ViewCell.View>
                 </ViewCell>
@@ -18,9 +17,8 @@
             <DataTemplate x:Key="toTemplate">
                 <ViewCell>
                     <ViewCell.View>
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Label Text="{Binding sendDate}"/>
-                            <Label Text="{Binding message}"/>
+                        <StackLayout BackgroundColor="Black" Orientation="Horizontal" HorizontalOptions="Start" Spacing="10" TranslationX="5">
+                            <Label TextColor="#ffa31a" Text="{Binding message}" Margin="3,0,3,0"/>
                         </StackLayout>
                     </ViewCell.View>
                 </ViewCell>
@@ -28,5 +26,11 @@
             <local:ChatDataTemplateSelector x:Key="chatDataTemplateSelector" fromTemplate="{StaticResource fromTemplate}" toTemplate="{StaticResource toTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ListView BackgroundColor="Black" x:Name="listMessages" HasUnevenRows="True" ItemTemplate="{StaticResource chatDataTemplateSelector}"/>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#808080">
+            <ListView BackgroundColor="#808080" x:Name="listMessages" HasUnevenRows="True" ItemTemplate="{StaticResource chatDataTemplateSelector}"/>
+            <Entry Style="{StaticResource Inputfield}" BackgroundColor="#808080" Placeholder="Bericht:" x:Name="text" Margin="10,0,10,2"/>
+            <Button x:Name="sendbtn" Style="{StaticResource Orangebtn}" Text="Verstuur" Margin="10,0,10,10" Clicked="sendbtn_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

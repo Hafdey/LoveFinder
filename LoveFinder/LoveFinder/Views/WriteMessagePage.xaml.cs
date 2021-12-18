@@ -32,7 +32,8 @@ namespace LoveFinder.Views
 
         private void sendbtn_Clicked(object sender, EventArgs e)
         {
-            msgctor.SendMessage(user.currentUser.userID, targetuser.userID, test.Text);
+            msgctor.SendMessage(user.currentUser.userID, targetuser.userID, text.Text);
+            text.Text = null;
         }
     }
 }

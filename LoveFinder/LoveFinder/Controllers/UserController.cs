@@ -56,6 +56,13 @@ namespace LoveFinder.Controllers
                 try
                 {
                     currentUser = sQLiteconnection.Table<User>().First(x => x.mail == mail && x.password == password);
+                    LoggedInUserController loggedctor = new LoggedInUserController();
+                    MatchController match = new MatchController();
+                    MessageListController messageListController = new MessageListController();
+                    match.MatchSwitch(currentUser.userID);
+                    messageListController.MessageListSwitch(currentUser.userID);
+                    loggedctor.currentuser = currentUser;
+                    loggedctor.LoginUser();
                 }
                 catch (Exception)
                 {
