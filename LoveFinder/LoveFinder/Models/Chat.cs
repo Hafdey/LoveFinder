@@ -10,5 +10,6 @@ namespace LoveFinder.Models
         public string name { get; set; }
         public ImageSource profilepic { get; set; }
         public string message { get; set; }
+        public int userID { get; set; }
     }
 }

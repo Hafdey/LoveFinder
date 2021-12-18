@@ -39,6 +39,7 @@ namespace LoveFinder.Views
                 chat.name = target.firstname;
                 chat.profilepic = profilepic;
                 chat.message = "TEST";
+                chat.userID = target.userID;
                 chats.Add(chat);
             }
             messagelist.ItemsSource = chats;
@@ -46,7 +47,10 @@ namespace LoveFinder.Views
 
         private void messagelist_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            WriteMessagePage writeMessagePage = new WriteMessagePage(target.mail);
+            var userinfo = messagelist.SelectedItem;
+            var userinfoID = userinfo.GetType().GetProperty("userID");
+            var userID = userinfoID.GetValue(userinfo, null);
+            WriteMessagePage writeMessagePage = new WriteMessagePage((int)userID);
             writeMessagePage.user = user;
             Navigation.PushAsync(writeMessagePage);
         }

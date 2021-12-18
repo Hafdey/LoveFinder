@@ -17,15 +17,15 @@ namespace LoveFinder.Views
         public UserController user { get; set; }
         MessageController msgctor = new MessageController();
         User targetuser = new User();
-        public string mail { get; set; }
-        public WriteMessagePage(string _mail)
+        public int userID { get; set; }
+        public WriteMessagePage(int _userID)
         {
             InitializeComponent();
-            mail = _mail;
+            userID = _userID;
         }
         protected override void OnAppearing()
         {
-            targetuser = user.GetSpecificUserByMail(mail);
+            targetuser = user.GetSpecificUser(userID);
             var msglist = msgctor.GetAllMessages(user.currentUser.userID, targetuser.userID);
             listMessages.ItemsSource = msglist;
         }
