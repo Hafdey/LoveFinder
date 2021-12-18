@@ -97,6 +97,15 @@ namespace LoveFinder.Controllers
                 return foundusr;
             }
         }
+        public User GetSpecificUserByMail(string mail)
+        {
+            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                var foundusr = sQLiteconnection.Table<User>().First(x => x.mail == mail);
+                sQLiteconnection.Close();
+                return foundusr;
+            }
+        }
         public User getUser()
         {
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))

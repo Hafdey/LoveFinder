@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LoveFinder.Views.MessagesPage">
     <ContentPage.Content>
-       <ListView x:Name="messagelist" BackgroundColor="#292929" SelectionMode="Single">
+       <ListView x:Name="messagelist" BackgroundColor="#292929" SelectionMode="Single" ItemSelected="messagelist_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

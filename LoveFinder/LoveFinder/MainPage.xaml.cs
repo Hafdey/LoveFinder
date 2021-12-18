@@ -28,6 +28,8 @@ namespace LoveFinder
             {
                 if(user.Login(Mail.Text, Password.Text))
                 {
+                    ChatDataTemplateSelector chatDataTemplateSelector = new ChatDataTemplateSelector();
+                    chatDataTemplateSelector.user = user;
                     LikePage likePage = new LikePage();
                     likePage.user = user;
                     Navigation.PushAsync(likePage);

@@ -19,6 +19,7 @@ namespace LoveFinder.Views
         MessageListController msgl = new MessageListController();
         PictureController pcontroller = new PictureController(); 
         List<MessageList> msglist = new List<MessageList>();
+        public User target { get; set; }
 
         public MessagesPage()
         {
@@ -31,7 +32,7 @@ namespace LoveFinder.Views
             foreach(var msg in msglist)
             {
                 Chat chat = new Chat();
-                User target = user.GetSpecificUser(msg.targetID);
+                target = user.GetSpecificUser(msg.targetID);
                 Stream targetpf = pcontroller.GetProfilePic(msg.targetID);
                 var profilepic = ImageSource.FromStream(() => targetpf);
                 var firstname = target.firstname;
@@ -43,5 +44,11 @@ namespace LoveFinder.Views
             messagelist.ItemsSource = chats;
         }
 
+        private void messagelist_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            WriteMessagePage writeMessagePage = new WriteMessagePage(target.mail);
+            writeMessagePage.user = user;
+            Navigation.PushAsync(writeMessagePage);
+        }
     }
 }
