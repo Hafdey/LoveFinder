@@ -32,7 +32,7 @@ namespace LoveFinder.Views
             }
             possiblematch = user.getUser();
             TargetText.Text = possiblematch.bio;
-            if (possiblematch.bio == null)
+            if (possiblematch.bio == "")
             {
                 TargetText.Text = "Deze gebruiker heeft geen bio -_-";
             }

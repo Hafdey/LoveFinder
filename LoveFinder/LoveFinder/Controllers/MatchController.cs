@@ -28,7 +28,7 @@ namespace LoveFinder.Controllers
                             if(userlike.likedID == like.userID)
                             {
                                 match.userID = uID;
-                                match.targetID = userlike.likeID;
+                                match.targetID = userlike.likedID;
                                 sQLiteconnection.Insert(match);
                                 var dellike = sQLiteconnection.Table<Liked>().First(x => x.userID == uID && x.likedID == userlike.likedID);
                                 sQLiteconnection.Delete(dellike);

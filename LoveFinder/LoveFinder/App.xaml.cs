@@ -10,29 +10,39 @@ namespace LoveFinder
     public partial class App : Application
     {
         public static string DatabaseLocation = string.Empty;
-        public App()
-        {
-           // UserController user = new UserController();
-           // User testuser = new User("test", "test", "Jan", "Wimpel", 20, "Male", "Hetero");
-           // testuser.bio = "Dit is een testbio";
-           // user.CreateAccount(testuser);
-            InitializeComponent();
-            MainPage page = new MainPage();
-            //page.user = user;
-            MainPage = new NavigationPage(page);
-        }
         public App(string databaseLocation)
         {
             InitializeComponent();
             DatabaseLocation = databaseLocation;
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(DatabaseLocation))
             {
+             //   var test1 = sQLiteconnection.Table<Liked>().ToList();
+             //   var test2 = sQLiteconnection.Table<Match>().ToList();
+             //   var test3 = sQLiteconnection.Table<User>().ToList();
+             //   var test4 = sQLiteconnection.Table<Picture>().ToList();
+             //   var test5 = sQLiteconnection.Table<Message>().ToList();
+             //   var test6 = sQLiteconnection.Table<MessageList>().ToList();
+             //
+             //   sQLiteconnection.DeleteAll<Liked>();
+             //   sQLiteconnection.DeleteAll<Match>();
+             //   sQLiteconnection.DeleteAll<User>();
+             //   sQLiteconnection.DeleteAll<Picture>();
+             //   sQLiteconnection.DeleteAll<Message>();
+             //   sQLiteconnection.DeleteAll<MessageList>();
+
                 sQLiteconnection.CreateTable<Liked>();
                 sQLiteconnection.CreateTable<Match>();
                 sQLiteconnection.CreateTable<User>();
                 sQLiteconnection.CreateTable<Picture>();
                 sQLiteconnection.CreateTable<Message>();
                 sQLiteconnection.CreateTable<MessageList>();
+
+             //   test1 = sQLiteconnection.Table<Liked>().ToList();
+             //   test2 = sQLiteconnection.Table<Match>().ToList();
+             //   test3 = sQLiteconnection.Table<User>().ToList();
+             //   test4 = sQLiteconnection.Table<Picture>().ToList();
+             //   test5 = sQLiteconnection.Table<Message>().ToList();
+             //   test6 = sQLiteconnection.Table<MessageList>().ToList();
             }
             MainPage page = new MainPage();
             MainPage = new NavigationPage(page);
