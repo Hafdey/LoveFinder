@@ -2,6 +2,7 @@
 using LoveFinder.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,14 +37,22 @@ namespace LoveFinder.Views
             {
                 TargetText.Text = "Deze gebruiker heeft geen bio -_-";
             }
-            var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
-            var restpics = pic.PossibleMatchPics(possiblematch.userID);
             try
             {
-                headpic.Source = ImageSource.FromStream(() => matchprofilepic);
-                pic1.Source = ImageSource.FromStream(() => restpics[restpics.Count - 1]);
-                pic2.Source = ImageSource.FromStream(() => restpics[restpics.Count - 2]);
-                pic3.Source = ImageSource.FromStream(() => restpics[restpics.Count - 3]);
+                var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
+                var stream = new MemoryStream(matchprofilepic.picByte);
+                headpic.Source = ImageSource.FromStream(() => stream);
+            }
+            catch (Exception)
+            {
+
+            }
+            try
+            {
+                var restpics = pic.PossibleMatchPics(possiblematch.userID);
+                pic1.Source = ImageSource.FromStream(() => restpics[0]);
+                pic2.Source = ImageSource.FromStream(() => restpics[1]);
+                pic3.Source = ImageSource.FromStream(() => restpics[2]);
             }
             catch (Exception)
             {
@@ -74,6 +83,7 @@ namespace LoveFinder.Views
             like.LikePerson(user.currentUser.userID, possiblematch.userID);
             possiblematch = user.getUser();
             var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
+            var stream = new MemoryStream(matchprofilepic.picByte);
             var restpics = pic.PossibleMatchPics(possiblematch.userID);
             TargetText.Text = possiblematch.bio;
             if(possiblematch.bio == null)
@@ -82,7 +92,7 @@ namespace LoveFinder.Views
             }
             try
             {
-                headpic.Source = ImageSource.FromStream(() => matchprofilepic);
+                headpic.Source = ImageSource.FromStream(() => stream);
                 pic1.Source = ImageSource.FromStream(() => restpics[restpics.Count - 1]);
                 pic2.Source = ImageSource.FromStream(() => restpics[restpics.Count - 2]);
                 pic3.Source = ImageSource.FromStream(() => restpics[restpics.Count - 3]);
@@ -106,10 +116,11 @@ namespace LoveFinder.Views
                 TargetText.Text = "Deze gebruiker heeft geen bio -_-";
             }
             var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
+            var stream = new MemoryStream(matchprofilepic.picByte);
             var restpics = pic.PossibleMatchPics(possiblematch.userID);
             try
             {
-                headpic.Source = ImageSource.FromStream(() => matchprofilepic);
+                headpic.Source = ImageSource.FromStream(() => stream);
                 pic1.Source = ImageSource.FromStream(() => restpics[restpics.Count - 1]);
                 pic2.Source = ImageSource.FromStream(() => restpics[restpics.Count - 2]);
                 pic3.Source = ImageSource.FromStream(() => restpics[restpics.Count - 3]);

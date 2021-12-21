@@ -31,6 +31,7 @@ namespace LoveFinder
                 //   sQLiteconnection.DeleteAll<MessageList>();
                 sQLiteconnection.CreateTable<LoggedInUser>();
                 sQLiteconnection.DeleteAll<LoggedInUser>();
+                var pics = sQLiteconnection.Table<Picture>().ToList();
 
                 sQLiteconnection.CreateTable<Liked>();
                 sQLiteconnection.CreateTable<Match>();

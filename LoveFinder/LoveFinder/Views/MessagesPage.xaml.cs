@@ -33,8 +33,9 @@ namespace LoveFinder.Views
             {
                 Chat chat = new Chat();
                 target = user.GetSpecificUser(msg.targetID);
-                Stream targetpf = pcontroller.GetProfilePic(msg.targetID);
-                var profilepic = ImageSource.FromStream(() => targetpf);
+                var targetpf = pcontroller.GetProfilePic(msg.targetID);
+                var stream = new MemoryStream(targetpf.picByte);
+                var profilepic = ImageSource.FromStream(() => stream);
                 var firstname = target.firstname;
                 chat.name = target.firstname;
                 chat.profilepic = profilepic;

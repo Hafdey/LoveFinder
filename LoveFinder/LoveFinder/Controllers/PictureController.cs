@@ -4,24 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Xamarin.Forms;
 
 namespace LoveFinder.Controllers
 {
     public class PictureController
     {
         public int picID { get; set; }
-        public void AddPicture(Picture pic)
+        public void AddPicture(Picture pic, int picID)
         {
-            var pics = new List<Picture>();
             bool success = false;
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
             {
                 sQLiteconnection.CreateTable<Picture>();
-                pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == pic.userID).ToList();
                 try
                 {
-                    int newprofilepic = pics.Count - picID;
-                    sQLiteconnection.Delete(pics[newprofilepic]);
+                    var oldpic = sQLiteconnection.Table<Picture>().Where(x => x.picID == picID);
+                    sQLiteconnection.Delete(oldpic);
                     sQLiteconnection.Insert(pic);
                     success = true;
                 }
@@ -37,7 +36,7 @@ namespace LoveFinder.Controllers
             }
 
         }
-        public List<Stream> GetPicture(int uID)
+        public List<Picture> GetPicture(int uID)
         {
             var pics = new List<Picture>();
             var streampic = new List<Stream>();
@@ -56,56 +55,71 @@ namespace LoveFinder.Controllers
 
                 }
                 sQLiteconnection.Close();
+                return pics;
             }
-            foreach(Picture pic in pics)
-            {
-                var stream = new MemoryStream(pic.picByte);
-                streampic.Add(stream);
-            }
-            return streampic;
+
         }
-        public void SetProfilePic(int uID)
+        public Picture GetPictureByID(int picID)
         {
-            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            using(SQLiteConnection sql = new SQLiteConnection(App.DatabaseLocation))
             {
-                var pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == uID).ToList();
+                Picture pic = new Picture();
                 try
                 {
-                    var profilepic = pics.Find(x => x.isProfilePic == true);
-                    profilepic.isProfilePic = false;
-                    sQLiteconnection.Update(profilepic);
+                     pic = sql.Table<Picture>().First(x => x.picID == picID);
                 }
                 catch (Exception)
                 {
 
                 }
-                var newprofilepic = pics[pics.Count - picID];
-                newprofilepic.isProfilePic = true;
-                sQLiteconnection.Update(newprofilepic);
-                sQLiteconnection.Close();
+                return pic;
             }
         }
-        public void RemovePic(int uID)
+        public void SetProfilePic(int uID, int picID)
         {
-            var pics = new List<Picture>();
-            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+            if(picID >= 0)
             {
-                pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == uID).ToList();
-                int delpic = pics.Count - picID;
-                sQLiteconnection.Delete(pics[delpic]);
-                sQLiteconnection.Close();
+                using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+                {
+                    var newprofile = sQLiteconnection.Table<Picture>().Where(x => x.picID == picID).ToList();
+                    var pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == uID).ToList();
+                    try
+                    {
+                        var profilepic = pics.Find(x => x.isProfilePic == true);
+                        profilepic.isProfilePic = false;
+                        sQLiteconnection.Update(profilepic);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    newprofile[0].isProfilePic = true;
+                    sQLiteconnection.Update(newprofile[0]);
+                    sQLiteconnection.Close();
+                }
             }
         }
-        public Stream GetProfilePic(int uID)
+        public void RemovePic(int picID)
         {
-            MemoryStream stream = null;
+            if(picID >= 0)
+            {
+                using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
+                {
+                    var pics = sQLiteconnection.Table<Picture>().Where(x => x.picID == picID).ToList();
+                    sQLiteconnection.Delete(pics[0]);
+                    sQLiteconnection.Close();
+                }
+            }
+        }
+        public Picture GetProfilePic(int uID)
+        {
             bool success = false;
+            Picture pic = new Picture();
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
-                    var bytePic = sQLiteconnection.Table<Picture>().First(x => x.userID == uID && x.isProfilePic == true);
-                    stream = new MemoryStream(bytePic.picByte);
+                    pic = sQLiteconnection.Table<Picture>().First(x => x.userID == uID && x.isProfilePic == true);
                     sQLiteconnection.Close();
                     success = true;
                 }
@@ -117,7 +131,7 @@ namespace LoveFinder.Controllers
                 {
                     return null;
                 }
-                return stream;
+                return pic;
             }
         }
         public List<Stream> PossibleMatchPics(int uID)

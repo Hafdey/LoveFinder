@@ -3,6 +3,7 @@ using LoveFinder.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +26,23 @@ namespace LoveFinder.Views
         protected override void OnAppearing()
         {
             var pic = PictureController.GetProfilePic(user.currentUser.userID);
-            if(pic != null)
+            try
             {
-                profilepic.Source = ImageSource.FromStream(() => pic);
+                if (pic != null)
+                {
+                    var stream = new MemoryStream(pic.picByte);
+                    profilepic.Source = ImageSource.FromStream(() => stream);
+                }
+                else
+                {
+                    Firstname.Margin = new Thickness(0, 10, 0, 0);
+                }
             }
+            catch (Exception)
+            {
+
+            }
+
             Firstname.Text = user.currentUser.firstname;
             Lastname.Text = user.currentUser.lastname;
             Age.Text = user.currentUser.age.ToString();

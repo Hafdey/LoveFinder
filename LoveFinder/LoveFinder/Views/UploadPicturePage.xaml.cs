@@ -20,39 +20,40 @@ namespace LoveFinder.Views
     {
         public UserController user { get; set; }
         public PictureController pictureController { get; set; }
+        public Stream old { get; set; }
         public UploadPicturePage()
         {
             InitializeComponent();
+            //old = _old;
         }
         protected override void OnAppearing()
         {
             var pictures = pictureController.GetPicture(user.currentUser.userID);
-            if (pictures != null)
-            {
-                picture.Source = ImageSource.FromStream(() => pictures[pictures.Count - pictureController.picID]);
-            }
+           // if (pictures != null)
+           // {
+           //     picture.Source = ImageSource.FromStream(() => pictures[pictures.Count - pictureController.picID]);
+           // }
         }
-        async private void Upload_Clicked(object sender, EventArgs e)
+        private void Upload_Clicked(object sender, EventArgs e)
         {
-            await CrossMedia.Current.Initialize();
-            Picture picture = new Picture();
-            MemoryStream ms = new MemoryStream();
-            var mediaOptions = new PickMediaOptions()
-            {
-                PhotoSize = PhotoSize.Medium
-            };
-            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
-            var picStream = selectedImageFile.GetStream();
-
-            picStream.CopyTo(ms);
-            var byteArray = ms.ToArray();
-            picture.isProfilePic = false;
-            picture.picByte = byteArray;
-            picture.userID = user.currentUser.userID;
-            pictureController.AddPicture(picture);
-            Navigation.PopAsync();
+      //      await CrossMedia.Current.Initialize();
+      //      Picture picture = new Picture();
+      //      MemoryStream ms = new MemoryStream();
+      //      var mediaOptions = new PickMediaOptions()
+      //      {
+      //          PhotoSize = PhotoSize.Medium
+      //      };
+      //      var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+      //      var picStream = selectedImageFile.GetStream();
+      //
+      //      picStream.CopyTo(ms);
+      //      var byteArray = ms.ToArray();
+      //      picture.isProfilePic = false;
+      //      picture.picByte = byteArray;
+      //      picture.userID = user.currentUser.userID;
+      //      pictureController.AddPicture(picture, old);
+      //      await Navigation.PopAsync();
         }
-
         private void Back_Clicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();

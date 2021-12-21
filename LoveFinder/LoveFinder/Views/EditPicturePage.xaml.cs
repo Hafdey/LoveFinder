@@ -1,4 +1,5 @@
 ﻿using LoveFinder.Controllers;
+using LoveFinder.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,80 +17,123 @@ namespace LoveFinder.Views
     {
         public UserController user { get; set; }
         PictureController PictureController = new PictureController();
+        public List<Picture> pics { get; set; }
+        public Picture profpic { get; set; }
         public EditPicturePage()
         {
             InitializeComponent();
         }
         protected override void OnAppearing()
         {
-            var pictures = PictureController.GetPicture(user.currentUser.userID);
-            if(pictures.Count >= 1)
+
+            using (var ms = new MemoryStream())
             {
-                pic1.Source = ImageSource.FromStream(() => pictures[pictures.Count - 1]);
-                if(pictures.Count >= 2)
+                pics = PictureController.GetPicture(user.currentUser.userID);
+                List<Stream> pictures = new List<Stream>();
+                profpic = PictureController.GetProfilePic(user.currentUser.userID);
+                foreach(var pic in pics)
                 {
-                    pic2.Source = ImageSource.FromStream(() => pictures[pictures.Count - 2]);
+                    var stream = new MemoryStream(pic.picByte);
+                    pictures.Add(stream);
                 }
-                if (pictures.Count >= 3)
+                try
                 {
-                    pic3.Source = ImageSource.FromStream(() => pictures[pictures.Count - 3]);
+                    var stream2 = new MemoryStream(profpic.picByte);
+                    profilepic.Source = ImageSource.FromStream(() => stream2);
                 }
-                if (pictures.Count >= 4)
+                catch (Exception)
                 {
-                    pic4.Source = ImageSource.FromStream(() => pictures[pictures.Count - 4]);
+
                 }
-                if (pictures.Count >= 5)
+                try
                 {
-                    pic5.Source = ImageSource.FromStream(() => pictures[pictures.Count - 5]);
+                    pic2.Source = ImageSource.FromStream(() => pictures[0]);
+                    pic3.Source = ImageSource.FromStream(() => pictures[1]);
+                    pic4.Source = ImageSource.FromStream(() => pictures[2]);
+                    pic5.Source = ImageSource.FromStream(() => pictures[3]);
+                }
+                catch (Exception)
+                {
+
                 }
             }
         }
-
         private void Save_Clicked(object sender, EventArgs e)
         {
-            EditProfilePage editProfilePage = new EditProfilePage();
-            editProfilePage.user = user;
-            Navigation.PushAsync(editProfilePage);
+            Navigation.PopAsync();
         }
        
         private void Back_Clicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
         }
-
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        private void profilepic_Clicked(object sender, EventArgs e)
         {
-            ChangePicturePage changePicturePage = new ChangePicturePage(1);
+            ChangePicturePage changePicturePage = new ChangePicturePage(profpic.picID);
             changePicturePage.user = user;
             Navigation.PushAsync(changePicturePage);
         }
-
-        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        private void pic2_Clicked(object sender, EventArgs e)
         {
-            ChangePicturePage changePicturePage = new ChangePicturePage(2);
-            changePicturePage.user = user;
-            Navigation.PushAsync(changePicturePage);
+            if(pics.Count > 1)
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(pics[0].picID);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
+            else
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(-1);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
+
         }
-
-        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private void pic3_Clicked(object sender, EventArgs e)
         {
-            ChangePicturePage changePicturePage = new ChangePicturePage(3);
-            changePicturePage.user = user;
-            Navigation.PushAsync(changePicturePage);
+            if(pics.Count > 2)
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(pics[1].picID);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
+            else
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(-1);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
+
         }
-
-        private void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
+        private void pic4_Clicked(object sender, EventArgs e)
         {
-            ChangePicturePage changePicturePage = new ChangePicturePage(4);
-            changePicturePage.user = user;
-            Navigation.PushAsync(changePicturePage);
+            if(pics.Count > 3)
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(pics[2].picID);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
+            else
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(-1);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
         }
-
-        private void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
+        private void pic5_Clicked(object sender, EventArgs e)
         {
-            ChangePicturePage changePicturePage = new ChangePicturePage(5);
-            changePicturePage.user = user;
-            Navigation.PushAsync(changePicturePage);
+            if(pics.Count > 4)
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(pics[3].picID);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
+            else
+            {
+                ChangePicturePage changePicturePage = new ChangePicturePage(-1);
+                changePicturePage.user = user;
+                Navigation.PushAsync(changePicturePage);
+            }
         }
     }
 }

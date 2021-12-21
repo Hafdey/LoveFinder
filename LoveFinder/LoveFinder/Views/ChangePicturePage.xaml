@@ -10,7 +10,6 @@
             <Button Style="{StaticResource Orangebtn}" x:Name="SetAsProfilePic" Text="Als profielfoto instellen" Clicked="SetAsProfilePic_Clicked" Margin="50,10,50,0"/>
             <Button Style="{StaticResource Orangebtn}" x:Name="DeletePic" Text="Foto verwijderen" Clicked="DeletePic_Clicked" Margin="50,10,50,0"/>
             <Button Style="{StaticResource Orangebtn}" x:Name="ReplacePic" Text="Foto vervangen" Clicked="ReplacePic_Clicked" Margin="50,10,50,0"/>
-            <Button Style="{StaticResource Orangebtn}" x:Name="Back" Text="Terug" Clicked="Back_Clicked" Margin="50,10,50,0"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

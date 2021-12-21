@@ -6,22 +6,26 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="#1b1b1b">
-                <Frame CornerRadius="20" Padding="0" Margin="5,25,240,110">
-                    <Image x:Name="profilepic" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image x:Name="profilepic" Source="placeholderport.png" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="135" Margin="10,10,0,0">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
-                    </Image>
-                </Frame>
-                <Label x:Name="Firstname" TextColor="#ffff" Margin="140,-200,0,0" FontSize="Medium"/>
-                <Label x:Name="Lastname" TextColor="#ffff" Margin="140,10,0,30" FontSize="Medium"/>
-                <Label Text="Bio:" TextColor="#ffff" FontSize="Medium" Margin="30,0,0,0"/>
-                <Entry Style="{StaticResource Inputfield}" BackgroundColor="#1b1b1b" x:Name="Bio" Placeholder="Bio:" Margin="30,0,30,10"/>
-                <Label Text="Leeftijd:" TextColor="#ffff" FontSize="Medium" Margin="30,0,0,0"/>
-                <Entry Style="{StaticResource Inputfield}" BackgroundColor="#1b1b1b" x:Name="Age" Keyboard="Numeric" Placeholder="Leeftijd" Margin="30,10,30,20"/>
-                <Button Style="{StaticResource Orangebtn}" x:Name="Save" Text="Opslaan" Clicked="Save_Clicked"/>
-                <Button Style="{StaticResource Orangebtn}" x:Name="Signout" Text="Uitloggen" Clicked="Signout_Clicked" Margin="60,89,60,1"/>
-                <Button Style="{StaticResource Redbtn}" x:Name="Remove" Text="Account verwijderen" Clicked="Remove_Clicked" Margin="60,0,60,0"/>
+                </Image>
+                <Label x:Name="Firstname" TextColor="#ffff" Margin="0,40,0,0" FontSize="Medium" HorizontalOptions="CenterAndExpand" TranslationY="-120"/>
+                <Label x:Name="Lastname" TextColor="#ffff" Margin="0,0,0,0" FontSize="Medium" HorizontalOptions="CenterAndExpand" TranslationY="-120"/>
+                <StackLayout TranslationY="-50" Margin="10,0,10,0">
+                    <Label Text="Bio:" TextColor="#ffff" FontSize="Medium"/>
+                    <Entry Style="{StaticResource Inputfield}" BackgroundColor="#1b1b1b" x:Name="Bio" Placeholder="Bio:" Margin="0,0,0,0"/>
+                </StackLayout>
+                <StackLayout Margin="10,0,10,0">
+                    <Label Text="Leeftijd:" TextColor="#ffff" FontSize="Medium" Margin="0,0,0,0"/>
+                    <Entry Style="{StaticResource Inputfield}" BackgroundColor="#1b1b1b" x:Name="Age" Keyboard="Numeric" Placeholder="Leeftijd"/>
+                </StackLayout>
+                <StackLayout TranslationY="76" Margin="10,0,10,0">
+                    <Button Style="{StaticResource Orangebtn}" x:Name="Save" Text="Opslaan" Clicked="Save_Clicked"/>
+                    <Button Style="{StaticResource Orangebtn}" x:Name="Signout" Text="Uitloggen" Clicked="Signout_Clicked" Margin="0,0,0,0"/>
+                    <Button Style="{StaticResource Redbtn}" x:Name="Remove" Text="Account verwijderen" Clicked="Remove_Clicked" Margin="90,0,90,0"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

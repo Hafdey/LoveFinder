@@ -1,6 +1,10 @@
 ﻿using LoveFinder.Controllers;
+using LoveFinder.Models;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,45 +20,52 @@ namespace LoveFinder.Views
         public UserController user { get; set; }
         PictureController PictureController = new PictureController();
         private List<System.IO.Stream> pictures { get; set; }
-        public ChangePicturePage(int _id)
+        public int picID { get; set; }
+        public ChangePicturePage(int _picID)
         {
             InitializeComponent();
-            PictureController.picID = _id;
+            picID = _picID;
         }
         protected override void OnAppearing()
         {
-            pictures = PictureController.GetPicture(user.currentUser.userID);
-            if (pictures != null)
+            if(picID >= 0)
             {
-                picture.Source = ImageSource.FromStream(() => pictures[pictures.Count - PictureController.picID]);
+                var pic = PictureController.GetPictureByID(picID);
+                var picsource = new MemoryStream(pic.picByte);
+                picture.Source = ImageSource.FromStream(() => picsource);
             }
         }
 
         private void SetAsProfilePic_Clicked(object sender, EventArgs e)
         {
-            var picfile = picture.Source;
-           
-            PictureController.SetProfilePic(user.currentUser.userID);
+            PictureController.SetProfilePic(user.currentUser.userID, picID);
             Navigation.PopAsync();
         }
 
         private void DeletePic_Clicked(object sender, EventArgs e)
         {
-            PictureController.RemovePic(user.currentUser.userID);
+            PictureController.RemovePic(picID);
             Navigation.PopAsync();
         }
 
-        private void ReplacePic_Clicked(object sender, EventArgs e)
+        async private void ReplacePic_Clicked(object sender, EventArgs e)
         {
-            UploadPicturePage uploadPicturePage = new UploadPicturePage();
-            uploadPicturePage.user = user;
-            uploadPicturePage.pictureController = PictureController;
-            Navigation.PushAsync(uploadPicturePage);
-        }
+            await CrossMedia.Current.Initialize();
+            Picture picture = new Picture();
+            MemoryStream ms = new MemoryStream();
+            var mediaOptions = new PickMediaOptions()
+            {
+                PhotoSize = PhotoSize.Medium
+            };
+            var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
+            var picStream = selectedImageFile.GetStream();
 
-        private void Back_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PopAsync();
+            picStream.CopyTo(ms);
+            var byteArray = ms.ToArray();
+            picture.isProfilePic = false;
+            picture.picByte = byteArray;
+            picture.userID = user.currentUser.userID;
+            PictureController.AddPicture(picture, picID);
         }
     }
 }
