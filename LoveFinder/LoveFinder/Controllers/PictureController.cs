@@ -43,12 +43,10 @@ namespace LoveFinder.Controllers
             using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
             {
                 pics = sQLiteconnection.Table<Picture>().Where(x => x.userID == uID).ToList();
-                var doublepic = pics.Find(x => x.isProfilePic == true);
-                pics.Remove(doublepic);
                 try
                 {
-                    var profilepic = sQLiteconnection.Table<Picture>().First(x => x.isProfilePic == true && x.userID == uID);
-                    pics.Add(profilepic);
+                    var doublepic = pics.Find(x => x.isProfilePic == true);
+                    pics.Remove(doublepic);
                 }
                 catch (Exception)
                 {

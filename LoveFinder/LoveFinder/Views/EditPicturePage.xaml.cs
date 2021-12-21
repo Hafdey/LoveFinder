@@ -122,7 +122,7 @@ namespace LoveFinder.Views
         }
         private void pic5_Clicked(object sender, EventArgs e)
         {
-            if(pics.Count > 4)
+            if(pics.Count >= 4)
             {
                 ChangePicturePage changePicturePage = new ChangePicturePage(pics[3].picID);
                 changePicturePage.user = user;

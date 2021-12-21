@@ -35,7 +35,6 @@ namespace LoveFinder.Views
                 picture.Source = ImageSource.FromStream(() => picsource);
             }
         }
-
         private void SetAsProfilePic_Clicked(object sender, EventArgs e)
         {
             PictureController.SetProfilePic(user.currentUser.userID, picID);
