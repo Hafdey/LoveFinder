@@ -7,15 +7,30 @@
         <ToolbarItem x:Name="Message" IconImageSource="Messagepic.png" Clicked="Message_Clicked"/>
         <ToolbarItem x:Name="Profile" IconImageSource="Profilepic.png" Clicked="Profile_Clicked"/>
     </ContentPage.ToolbarItems>
-    <ScrollView>
-        <StackLayout Background="#1b1b1b">
-            <Image x:Name="headpic" Source="placeholderport.png" Margin="50,0,50,10"/>
-            <Image x:Name="pic1" Source="placeholderport.png" Margin="10,0,245,0"/>
-            <Image x:Name="pic2" Source="placeholderport.png" Margin="127,-111,128,0"/>
-            <Image x:Name="pic3" Source="placeholderport.png" Margin="245,-111,10,0"/>
-            <Label x:Name="TargetText" Text="Hier komt de tekst van de mogelijke match" Margin="10,0,10,0" TextColor="#fff"/>
-            <ImageButton x:Name="Like" BackgroundColor="#07e000" BorderColor="#035c00" Clicked="Like_Clicked" Source="Heart.png" CornerRadius="200" Margin="20,10,230,0" Padding="10,10,10,0"/>
-            <ImageButton x:Name="Dislike" BackgroundColor="#e00000" BorderColor="#5c0000" Clicked="Dislike_Clicked" Source="Nope.png" CornerRadius="200" Margin="235,-99,20,0" Padding="10,10,10,10"/>
-        </StackLayout>
-    </ScrollView>
+    <StackLayout BackgroundColor="#292929">
+        <Grid Margin="20,10,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="profilepic" Source="placeholderport.png" BackgroundColor="#292929" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"/>
+            <Image x:Name="pic2" Source="placeholderport.png" BackgroundColor="#292929" Grid.Column="0" Grid.Row="2"/>
+            <Image x:Name="pic3" Source="placeholderport.png" BackgroundColor="#292929" Grid.Column="1" Grid.Row="2"/>
+            <Image x:Name="pic4" Source="placeholderport.png" BackgroundColor="#292929" Grid.Column="2" Grid.Row="2"/>
+            <Image x:Name="pic5" Source="placeholderport.png" BackgroundColor="#292929" Grid.Column="3" Grid.Row="2"/>
+            <Label x:Name="bio" BackgroundColor="#292929" Text="uduyawg" TextColor="#ffa31a" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3" Grid.RowSpan="4"/>
+            <ImageButton x:Name="Like" Source="Heart.png" BackgroundColor="ForestGreen" Grid.Column="0" Grid.Row="5" Clicked="Like_Clicked"/>
+            <ImageButton x:Name="Dislike" Source="Nope.png" BackgroundColor="Red" Grid.Column="3" Grid.Row="5" Clicked="Dislike_Clicked"/>
+        </Grid>
+    </StackLayout>
 </ContentPage>

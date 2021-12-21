@@ -32,31 +32,32 @@ namespace LoveFinder.Views
                 DisplayAlert("Match!", "Je hebt een match, check je berichten!", "Oke");
             }
             possiblematch = user.getUser();
-            TargetText.Text = possiblematch.bio;
+            bio.Text = possiblematch.bio;
             if (possiblematch.bio == "")
             {
-                TargetText.Text = "Deze gebruiker heeft geen bio -_-";
+                bio.Text = "Deze gebruiker heeft geen bio -_-";
             }
             try
             {
                 var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
                 var stream = new MemoryStream(matchprofilepic.picByte);
-                headpic.Source = ImageSource.FromStream(() => stream);
+                profilepic.Source = ImageSource.FromStream(() => stream);
             }
             catch (Exception)
             {
-
+            
             }
             try
             {
                 var restpics = pic.PossibleMatchPics(possiblematch.userID);
-                pic1.Source = ImageSource.FromStream(() => restpics[0]);
-                pic2.Source = ImageSource.FromStream(() => restpics[1]);
-                pic3.Source = ImageSource.FromStream(() => restpics[2]);
+                pic2.Source = ImageSource.FromStream(() => restpics[0]);
+                pic3.Source = ImageSource.FromStream(() => restpics[1]);
+                pic4.Source = ImageSource.FromStream(() => restpics[2]);
+                pic5.Source = ImageSource.FromStream(() => restpics[3]);
             }
             catch (Exception)
             {
-
+            
             }
             if(possiblematch.userID == user.currentUser.userID)
             {
@@ -80,22 +81,29 @@ namespace LoveFinder.Views
 
         private void Like_Clicked(object sender, EventArgs e)
         {
-            like.LikePerson(user.currentUser.userID, possiblematch.userID);
             possiblematch = user.getUser();
-            var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
-            var stream = new MemoryStream(matchprofilepic.picByte);
-            var restpics = pic.PossibleMatchPics(possiblematch.userID);
-            TargetText.Text = possiblematch.bio;
-            if(possiblematch.bio == null)
+            bio.Text = possiblematch.bio;
+            if (possiblematch.bio == "")
             {
-                TargetText.Text = "Deze gebruiker heeft geen bio -_-";
+                bio.Text = "Deze gebruiker heeft geen bio -_-";
             }
             try
             {
-                headpic.Source = ImageSource.FromStream(() => stream);
-                pic1.Source = ImageSource.FromStream(() => restpics[restpics.Count - 1]);
-                pic2.Source = ImageSource.FromStream(() => restpics[restpics.Count - 2]);
-                pic3.Source = ImageSource.FromStream(() => restpics[restpics.Count - 3]);
+                var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
+                var stream = new MemoryStream(matchprofilepic.picByte);
+                profilepic.Source = ImageSource.FromStream(() => stream);
+            }
+            catch (Exception)
+            {
+
+            }
+            try
+            {
+                var restpics = pic.PossibleMatchPics(possiblematch.userID);
+                pic2.Source = ImageSource.FromStream(() => restpics[0]);
+                pic3.Source = ImageSource.FromStream(() => restpics[1]);
+                pic4.Source = ImageSource.FromStream(() => restpics[2]);
+                pic5.Source = ImageSource.FromStream(() => restpics[3]);
             }
             catch (Exception)
             {
@@ -105,25 +113,37 @@ namespace LoveFinder.Views
             {
                 DisplayAlert("Geen gebruikers meer", "Er zijn geen gebruikers meer in het systeem die je kunt liken", "Oke :(");
             }
+            if(possiblematch.userID != user.currentUser.userID)
+            {
+                like.LikePerson(user.currentUser.userID, possiblematch.userID);
+            }
         }
 
         private void Dislike_Clicked(object sender, EventArgs e)
         {
             possiblematch = user.getUser();
-            TargetText.Text = possiblematch.bio;
-            if (possiblematch.bio == null)
+            bio.Text = possiblematch.bio;
+            if (possiblematch.bio == "")
             {
-                TargetText.Text = "Deze gebruiker heeft geen bio -_-";
+                bio.Text = "Deze gebruiker heeft geen bio -_-";
             }
-            var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
-            var stream = new MemoryStream(matchprofilepic.picByte);
-            var restpics = pic.PossibleMatchPics(possiblematch.userID);
             try
             {
-                headpic.Source = ImageSource.FromStream(() => stream);
-                pic1.Source = ImageSource.FromStream(() => restpics[restpics.Count - 1]);
-                pic2.Source = ImageSource.FromStream(() => restpics[restpics.Count - 2]);
-                pic3.Source = ImageSource.FromStream(() => restpics[restpics.Count - 3]);
+                var matchprofilepic = pic.GetProfilePic(possiblematch.userID);
+                var stream = new MemoryStream(matchprofilepic.picByte);
+                profilepic.Source = ImageSource.FromStream(() => stream);
+            }
+            catch (Exception)
+            {
+
+            }
+            try
+            {
+                var restpics = pic.PossibleMatchPics(possiblematch.userID);
+                pic2.Source = ImageSource.FromStream(() => restpics[0]);
+                pic3.Source = ImageSource.FromStream(() => restpics[1]);
+                pic4.Source = ImageSource.FromStream(() => restpics[2]);
+                pic5.Source = ImageSource.FromStream(() => restpics[3]);
             }
             catch (Exception)
             {
