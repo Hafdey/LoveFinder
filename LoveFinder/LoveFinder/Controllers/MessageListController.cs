@@ -41,12 +41,5 @@ namespace LoveFinder.Controllers
                 }
             }
         }
-        public void GetSpecificMessageList()
-        {
-            using (SQLiteConnection sQLiteconnection = new SQLiteConnection(App.DatabaseLocation))
-            {
-
-            }
-        }
     }
 }

@@ -81,6 +81,10 @@ namespace LoveFinder.Views
 
         private void Like_Clicked(object sender, EventArgs e)
         {
+            if (possiblematch.userID != user.currentUser.userID)
+            {
+                like.LikePerson(user.currentUser.userID, possiblematch.userID);
+            }
             possiblematch = user.getUser();
             bio.Text = possiblematch.bio;
             if (possiblematch.bio == "")
@@ -112,10 +116,6 @@ namespace LoveFinder.Views
             if (possiblematch.userID == user.currentUser.userID)
             {
                 DisplayAlert("Geen gebruikers meer", "Er zijn geen gebruikers meer in het systeem die je kunt liken", "Oke :(");
-            }
-            if(possiblematch.userID != user.currentUser.userID)
-            {
-                like.LikePerson(user.currentUser.userID, possiblematch.userID);
             }
         }
 
