@@ -9,7 +9,8 @@
         <Entry Style="{StaticResource Inputfield}" x:Name="Mail" Placeholder="E-mail:" PlaceholderColor="#ffff" Margin="50,100,50,0"/>
         <Entry Style="{StaticResource Inputfield}" x:Name="Password" IsPassword="True" Placeholder="Password:" PlaceholderColor="#ffff" Margin="50,0,50,0"/>
         <Button Style="{StaticResource Orangebtn}" x:Name="Loginbtn" Text="Inloggen" Clicked="Loginbtn_Clicked" Margin="50,100,50,0"/>
-        <Button Style="{StaticResource Orangebtn}" x:Name="Registerbtn" Text="Registreren" Clicked="Registerbtn_Clicked" Margin="50,15,50,0"/>
+        <Button Style="{StaticResource Orangebtn}" x:Name="Registerbtn" Text="Registreren" Clicked="Registerbtn_Clicked" Margin="50,5,50,0"/>
+        <Button Style="{StaticResource Orangebtn}" x:Name="Kanyebtn" Text="KANYE!" Clicked="Kanyebtn_Clicked" Margin="50,5,50,0"/>
     </StackLayout>
 
 </ContentPage>

@@ -49,5 +49,12 @@ namespace LoveFinder
             registerPage.user = user;
             Navigation.PushAsync(registerPage);
         }
+
+        private void Kanyebtn_Clicked(object sender, EventArgs e)
+        {
+            KanyePage kanyePage = new KanyePage();
+            kanyePage.user = user;
+            Navigation.PushAsync(kanyePage);
+        }
     }
 }
