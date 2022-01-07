@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout Background="#1b1b1b">
             <Frame CornerRadius="20" Padding="0" Margin="50,5,50,10">
-                <Image x:Name="picture" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Image x:Name="Picture" Source="placeholderport.png" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Frame>
             <Button Style="{StaticResource Orangebtn}" x:Name="SetAsProfilePic" Text="Als profielfoto instellen" Clicked="SetAsProfilePic_Clicked" Margin="50,10,50,0"/>
             <Button Style="{StaticResource Orangebtn}" x:Name="DeletePic" Text="Foto verwijderen" Clicked="DeletePic_Clicked" Margin="50,10,50,0"/>

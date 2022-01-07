@@ -32,7 +32,7 @@ namespace LoveFinder.Views
             {
                 var pic = PictureController.GetPictureByID(picID);
                 var picsource = new MemoryStream(pic.picByte);
-                picture.Source = ImageSource.FromStream(() => picsource);
+                Picture.Source = ImageSource.FromStream(() => picsource);
             }
         }
         private void SetAsProfilePic_Clicked(object sender, EventArgs e)
@@ -58,6 +58,7 @@ namespace LoveFinder.Views
             };
             var selectedImageFile = await CrossMedia.Current.PickPhotoAsync(mediaOptions);
             var picStream = selectedImageFile.GetStream();
+            Picture.Source = ImageSource.FromStream(() => picStream);
 
             picStream.CopyTo(ms);
             var byteArray = ms.ToArray();

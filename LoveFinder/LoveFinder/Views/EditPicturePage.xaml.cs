@@ -47,10 +47,22 @@ namespace LoveFinder.Views
                 }
                 try
                 {
-                    pic2.Source = ImageSource.FromStream(() => pictures[0]);
-                    pic3.Source = ImageSource.FromStream(() => pictures[1]);
-                    pic4.Source = ImageSource.FromStream(() => pictures[2]);
-                    pic5.Source = ImageSource.FromStream(() => pictures[3]);
+                    if(pictures.Count >= 1)
+                    {
+                        pic2.Source = ImageSource.FromStream(() => pictures[0]);
+                    }
+                    if(pictures.Count >= 2)
+                    {
+                        pic3.Source = ImageSource.FromStream(() => pictures[1]);
+                    }
+                    if(pictures.Count >= 3)
+                    {
+                        pic4.Source = ImageSource.FromStream(() => pictures[2]);
+                    }
+                    if(pictures.Count >= 4)
+                    {
+                        pic5.Source = ImageSource.FromStream(() => pictures[3]);
+                    }
                 }
                 catch (Exception)
                 {
@@ -75,7 +87,7 @@ namespace LoveFinder.Views
         }
         private void pic2_Clicked(object sender, EventArgs e)
         {
-            if(pics.Count > 1)
+            if(pics.Count >= 1)
             {
                 ChangePicturePage changePicturePage = new ChangePicturePage(pics[0].picID);
                 changePicturePage.user = user;
@@ -91,7 +103,7 @@ namespace LoveFinder.Views
         }
         private void pic3_Clicked(object sender, EventArgs e)
         {
-            if(pics.Count > 2)
+            if(pics.Count >= 2)
             {
                 ChangePicturePage changePicturePage = new ChangePicturePage(pics[1].picID);
                 changePicturePage.user = user;
@@ -107,7 +119,7 @@ namespace LoveFinder.Views
         }
         private void pic4_Clicked(object sender, EventArgs e)
         {
-            if(pics.Count > 3)
+            if(pics.Count >= 3)
             {
                 ChangePicturePage changePicturePage = new ChangePicturePage(pics[2].picID);
                 changePicturePage.user = user;

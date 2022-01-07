@@ -23,15 +23,16 @@ namespace LoveFinder
                 //   var test5 = sQLiteconnection.Table<Message>().ToList();
                 //   var test6 = sQLiteconnection.Table<MessageList>().ToList();
                 //
-                //   sQLiteconnection.DeleteAll<Liked>();
-                //   sQLiteconnection.DeleteAll<Match>();
-                //   sQLiteconnection.DeleteAll<User>();
-                //   sQLiteconnection.DeleteAll<Picture>();
-                //   sQLiteconnection.DeleteAll<Message>();
-                //   sQLiteconnection.DeleteAll<MessageList>();
+                // sQLiteconnection.DeleteAll<Liked>();
+                // sQLiteconnection.DeleteAll<Match>();
+                // sQLiteconnection.DeleteAll<User>();
+                // sQLiteconnection.DeleteAll<Picture>();
+                // sQLiteconnection.DeleteAll<Message>();
+                // sQLiteconnection.DeleteAll<MessageList>();
+
                 sQLiteconnection.CreateTable<LoggedInUser>();
                 sQLiteconnection.DeleteAll<LoggedInUser>();
-                var pics = sQLiteconnection.Table<Picture>().ToList();
+                //var pics = sQLiteconnection.Table<Picture>().ToList();
 
                 sQLiteconnection.CreateTable<Liked>();
                 sQLiteconnection.CreateTable<Match>();
